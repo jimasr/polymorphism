@@ -1,27 +1,25 @@
 #include "Catalogue.h"
 #include <iostream>
 
-Catalogue::Catalogue(int capacite) : capaciteActuelle(capacite), tailleActuelle(0) {
-    trajets = new Trajet*[capacite];
+Catalogue::Catalogue() {
+    
 }
 
 Catalogue::~Catalogue() {
-    for (int i = 0; i < tailleActuelle; ++i) {
-        delete trajets[i];
-    }
-    delete[] trajets;
+    // Le destructeur de Catalogue libérera automatiquement la mémoire utilisée par la Liste
 }
 
-void Catalogue::ajouterTrajet(Trajet* trajet) {
-    if (tailleActuelle < capaciteActuelle) {
-        trajets[tailleActuelle++] = trajet;
-    } else {
-        std::cout << "Catalogue plein. Impossible d'ajouter plus de trajets." << std::endl;
-    }
+void Catalogue::Ajouter(char* debut, char* fin) {
+    // Ajoutez le trajet à la liste
+    //liste.Ajouter(char* debut, char* fin);
 }
 
-void Catalogue::lireCatalogue() const {
-    for (int i = 0; i < tailleActuelle; ++i) {
-        trajets[i]->Afficher();
-    }
+void Catalogue::AfficherCatalogue() const {
+    // Affichez la liste
+    liste.Afficher();
+}
+
+void Catalogue::RechercherSimple(char* depart, char* arrive) const
+{
+
 }
