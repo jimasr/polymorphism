@@ -1,23 +1,19 @@
 #if ! defined ( TRAJET_H )
 #define TRAJET_H
 
-class Trajet
-{
-public:
+class Trajet {
+    public:
+        // virtual void Afficher () const = 0;
+        string GetDepart();
+        string GetArrive();
+        
+        virtual ~Trajet ();
 
-    virtual void Afficher () const = 0;
-    std::string getDepart();
-    std::string getArrive();
-    Trajet(std::string depart, std::string arrive);
-    virtual ~Trajet ( );
+    protected:
+        Trajet(string depart, string arrive);
 
-
-
-protected:
-    std::string depart;
-    std::string arrive;
-
+        string depart;
+        string arrive;
 };
-
 
 #endif

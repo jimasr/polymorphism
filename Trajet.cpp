@@ -1,28 +1,26 @@
 #include <iostream>
-#include "Trajet.h"
 using namespace std;
 
-Trajet::Trajet(std::string newDepart, std::string newArrive)
-{
-#ifdef MAP
-    cout << "Appel au constructeur de <Trajet>" << endl;
-#endif
+#include "Trajet.h"
+
+
+Trajet::Trajet(string newDepart, string newArrive) : depart(newDepart), arrive(newArrive) {
+    #ifdef MAP
+        cout << "Appel au constructeur de <Trajet>" << endl;
+    #endif
 } 
 
 
-Trajet::~Trajet ( )
-{
-#ifdef MAP
-    cout << "Appel au destructeur de <Trajet>" << endl;
-#endif
+Trajet::~Trajet () {
+    #ifdef MAP
+        cout << "Appel au destructeur de <Trajet>" << endl;
+    #endif
 }
 
-std::string Trajet::getDepart()
-{
+string Trajet::GetDepart() {
     return depart;
 }
 
-std::string Trajet::getArrive()
-{
+string Trajet::GetArrive() {
     return arrive;
 }

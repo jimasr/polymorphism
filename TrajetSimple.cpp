@@ -1,8 +1,10 @@
 #include <iostream>
-#include "TrajetSimple.h"
 using namespace std;
 
-TrajetSimple::TrajetSimple(std::string newDepart, std::string newArrive, std::string newTransport) : Trajet(newDepart, newArrive), transport(newTransport)
+#include "TrajetSimple.h"
+
+
+TrajetSimple::TrajetSimple(string newDepart, string newArrive, string newTransport) : Trajet(newDepart, newArrive), transport(newTransport)
 {
 #ifdef MAP
     cout << "Appel au constructeur de <TrajetSimple>" << endl;
@@ -19,10 +21,10 @@ TrajetSimple::~TrajetSimple ( )
 
 void TrajetSimple::Afficher() const
 {
-    cout << "de" << depart << "a" << arrive << "en" << transport << endl;
+    cout << " de " << depart << " a " << arrive << " en " << transport << endl;
 }
 
-std::string TrajetSimple::getTransport()
+string TrajetSimple::GetTransport()
 {
     return transport;
 }
