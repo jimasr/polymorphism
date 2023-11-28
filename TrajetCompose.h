@@ -6,14 +6,15 @@
 
 class TrajetCompose : public Trajet {
 	public:
-		TrajetCompose(const char* depart, const char* arrive, Liste liste);
-		void Afficher() const; 
-		Liste GetListe();
+		TrajetCompose(const char* depart, const char* arrive, Liste* liste);
+		virtual void Afficher() const; 
+		Liste* GetListe();
 		virtual ~TrajetCompose();
 
 	protected:
-		Liste liste;
+		Liste* liste;
 
 };
 
 #endif
+

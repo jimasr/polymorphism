@@ -1,6 +1,6 @@
 CXX = g++
 CXXFLAGS = -std=c++11 -Wall -ansi -pedantic -DMAP
-SRCS = Main.cpp Trajet.cpp TrajetSimple.cpp Noeud.cpp Liste.cpp 
+SRCS = Main.cpp Trajet.cpp TrajetSimple.cpp TrajetCompose.cpp Noeud.cpp Liste.cpp 
 OBJS = $(SRCS:..cpp=o)
 TARGET = Prog
 

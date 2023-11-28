@@ -2,6 +2,7 @@
 using namespace std;
 
 #include "TrajetSimple.h"
+#include "TrajetCompose.h"
 #include "Liste.h"
 
 
@@ -12,23 +13,23 @@ int main() {
     TrajetSimple trajet2("A", "C", "MT2");
 
     Liste l;
-    Liste c;
 
     l.Ajouter(trajet1);
     l.Ajouter(trajet2);
 
+    TrajetCompose trajet3("A", "C", &l);
+
     l.Afficher();
-    c.Afficher();
 
     // Affichage du trajet simple
     cout << "Affichage du trajet simple : ";
     trajet1.Afficher();
     cout << endl;
 
-    // Affichage des informations sur le trajet simple
-    cout << "Départ : " << trajet1.GetDepart() << endl;
-    cout << "Arrivée : " << trajet1.GetArrive() << endl;
-    cout << "Transport : " << trajet1.GetTransport() << endl;
+    // Affichage du trajet compose
+    cout << "Affichage du trajet compose : ";
+    trajet3.Afficher();
+    cout << endl;
 
     return 0;
 }

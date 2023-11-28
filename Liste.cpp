@@ -4,18 +4,20 @@ using namespace std;
 #include "Liste.h"
 
 // Constructeur de Liste
-Liste::Liste ()
-{
-#ifdef MAP
-    cout << "Appel au constructeur de <Liste>" << endl;
-#endif
-tete = nullptr; // Initialise la liste avec un pointeur de tête nul.
+Liste::Liste () {
+    #ifdef MAP
+        cout << "Appel au constructeur de <Liste>" << endl;
+    #endif
+    tete = nullptr; // Initialise la liste avec un pointeur de tête nul.
 }
 
 // Ajoute un élément à la fin de la liste.
 
-void Liste::Ajouter(const Trajet & elem)
-{
+void Liste::Ajouter(const Trajet & elem) {
+    #ifdef MAP
+        cout << "Appel au ajouter de <Liste>" << endl;
+    #endif
+
     Noeud* nouveauNoeud = new Noeud(nullptr, elem);
 
     if (tete == nullptr) {
@@ -36,11 +38,18 @@ void Liste::Ajouter(const Trajet & elem)
 
 void Liste::Afficher() const
 {
+    #ifdef MAP
+        cout << "Appel au afficher de <Liste>" << endl;
+    #endif
+
     Noeud* temp = tete;
     while (temp != nullptr) {
+
         Trajet trajet = temp->GetTrajet();
         cout << "de " << trajet.GetDepart() <<  " à " << trajet.GetArrive() << endl;
+
         temp = temp->GetNoeudSuivant();
+
     }
 }
 
