@@ -68,6 +68,6 @@ Liste::~Liste()
     }
 }
 
-Noeud* Noeud::GetNoeudSuivant() const {
+Noeud * Liste::GetTete() const {
     return tete;
 }
