@@ -14,13 +14,14 @@ class Liste {
         // Ajoute un élément à la fin de la liste.
         // elem : Le trajet à ajouter.
         void Ajouter(const Trajet& elem);
-
+        Noeud* GetHead() const;
         // Affiche la liste
         void Afficher() const;
 
         // Destructeur de Liste.
         // Libère la mémoire occupée par tous les nœuds de la liste.
         virtual ~Liste();
+        
 
     private:
         Noeud* tete; // Pointeur vers le premier nœud de la liste.

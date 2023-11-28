@@ -58,3 +58,7 @@ Liste::~Liste()
         courant = suivant;
     }
 }
+
+Noeud* Noeud::GetNoeudSuivant() const {
+    return tete;
+}

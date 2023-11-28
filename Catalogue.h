@@ -2,6 +2,7 @@
 #define CATALOGUE_H
 
 #include "Liste.h"
+#include "Noeud.h"
 
 class Catalogue {
 public:
@@ -18,9 +19,10 @@ public:
     void AfficherCatalogue() const;
     
     void RechercherSimple(char* debut, char* fin) const;
+    
 
 private:
-    Liste liste;
+    Liste* liste;
     
 };
 
