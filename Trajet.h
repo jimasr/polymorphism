@@ -4,16 +4,16 @@
 class Trajet {
     public:
         // virtual void Afficher () const = 0;
-        string GetDepart();
-        string GetArrive();
+        const char* GetDepart();
+        const char* GetArrive();
         
         virtual ~Trajet ();
 
     protected:
-        Trajet(string depart, string arrive);
+        Trajet(const char * depart, const char * arrive);
 
-        string depart;
-        string arrive;
+        const char* depart;
+        const char* arrive;
 };
 
 #endif
