@@ -18,7 +18,7 @@ public:
     // Affiche le catalogue
     void AfficherCatalogue() const;
     
-    void RechercherSimple(char* debut, char* fin) const;
+    int RechercherSimple(char* debut, char* fin) const;
     
 
 private:
