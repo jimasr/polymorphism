@@ -4,7 +4,7 @@ using namespace std;
 #include "Trajet.h"
 
 
-Trajet::Trajet(string newDepart, string newArrive) : depart(newDepart), arrive(newArrive) {
+Trajet::Trajet(const char* newDepart, const char* newArrive) : depart(newDepart), arrive(newArrive) {
     #ifdef MAP
         cout << "Appel au constructeur de <Trajet>" << endl;
     #endif
@@ -17,10 +17,10 @@ Trajet::~Trajet () {
     #endif
 }
 
-string Trajet::GetDepart() {
+const char * Trajet::GetDepart() {
     return depart;
 }
 
-string Trajet::GetArrive() {
+const char* Trajet::GetArrive() {
     return arrive;
 }
