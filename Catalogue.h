@@ -1,21 +1,29 @@
-#if !defined(CATALOGUE_H)
+#ifndef CATALOGUE_H
 #define CATALOGUE_H
 
-#include "Trajet.h"
 #include "Liste.h"
+#include "Noeud.h"
 
 class Catalogue {
 public:
-    Catalogue(int capacite);
+    // Constructeur de Catalogue
+    Catalogue();
+
+    // Destructeur de Catalogue
     ~Catalogue();
 
-    void ajouterTrajet(Trajet* trajet);
-    void lireCatalogue() const;
+    // Ajoute un trajet au catalogue
+    void Ajouter(char* debut, char* fin);
+
+    // Affiche le catalogue
+    void AfficherCatalogue() const;
+    
+    void RechercherSimple(char* debut, char* fin) const;
+    
 
 private:
-    Trajet** trajets;
-    int capaciteActuelle;
-    int tailleActuelle;
+    Liste* liste;
+    
 };
 
-#endif // CATALOGUE_H
+#endif
