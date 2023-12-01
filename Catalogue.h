@@ -4,7 +4,8 @@
 #include "Liste.h"
 #include "Noeud.h"
 
-class Catalogue {
+class Catalogue
+{
 public:
     // Constructeur de Catalogue
     Catalogue();
@@ -13,17 +14,16 @@ public:
     ~Catalogue();
 
     // Ajoute un trajet au catalogue
-    void Ajouter(char* debut, char* fin);
+    void Ajouter(Trajet *trajet);
 
     // Affiche le catalogue
     void AfficherCatalogue() const;
-    
-    int RechercherSimple(char* debut, char* fin) const;
-    
 
-private:
-    Liste* liste;
-    
+    int RechercherSimple(char *debut, char *fin) const;
+    int RechercherSimple2(char *debut, char *fin) const;
+
+protected:
+    Liste *liste;
 };
 
 #endif

@@ -4,28 +4,29 @@
 #include "Trajet.h"
 
 // Représente un nœud dans une liste chaînée.
-class Noeud {
+class Noeud
+{
 public:
     // Constructeur de Noeud.
     // suivant : Le pointeur vers le nœud suivant.
     // traj : Le trajet associé au nœud.
-    Noeud(Noeud* suivant, const Trajet& traj);
+    Noeud(Noeud *suivant, Trajet *traj);
 
     // Obtient le nœud suivant.
-    Noeud* GetNoeudSuivant() const;
+    Noeud *GetNoeudSuivant() const;
 
     // Modifie le noeud suivant.
-    void SetNoeudSuivant(Noeud* suivant);
+    void SetNoeudSuivant(Noeud *suivant);
 
     // Obtient le trajet associé au nœud.
-    Trajet GetTrajet() const;
+    Trajet *GetTrajet() const;
 
     // Destructeur de Noeud.
     virtual ~Noeud();
 
 private:
-    Noeud* noeud; // Pointeur vers le nœud suivant.
-    Trajet trajet; // Trajet associé au nœud.
+    Noeud *noeud;   // Pointeur vers le nœud suivant.
+    Trajet *trajet; // Trajet associé au nœud.
 };
 
 #endif

@@ -13,7 +13,7 @@ class Liste {
 
         // Ajoute un élément à la fin de la liste.
         // elem : Le trajet à ajouter.
-        void Ajouter(const Trajet& elem);
+        void Ajouter(Trajet * elem);
         Noeud* GetTete() const;
         // Affiche la liste
         void Afficher() const;
