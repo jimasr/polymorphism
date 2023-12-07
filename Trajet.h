@@ -5,13 +5,13 @@ class Trajet
 {
 public:
     virtual void Afficher() const = 0;
-    const char *GetDepart();
-    const char *GetArrive();
+    char *GetDepart();
+    char *GetArrive();
     virtual ~Trajet();
 
 protected:
-    const char *depart;
-    const char *arrive;
+    char *depart;
+    char *arrive;
     Trajet(const char *depart, const char *arrive);
 };
 

@@ -7,12 +7,12 @@ class TrajetSimple : public Trajet {
     public:
         TrajetSimple (const char* depart, const char* arrive, const char* transport);
         virtual ~TrajetSimple( );
-        const char* GetTransport();
+        char* GetTransport();
         virtual void Afficher() const;
 
 
     protected:
-        const char* transport;
+        char* transport;
 };
 
 

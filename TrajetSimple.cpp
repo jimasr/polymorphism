@@ -4,10 +4,13 @@ using namespace std;
 #include "TrajetSimple.h"
 
 
-TrajetSimple::TrajetSimple(const char* newDepart, const char* newArrive, const char* newTransport) : Trajet(newDepart, newArrive), transport(newTransport) {
+TrajetSimple::TrajetSimple(const char* newDepart, const char* newArrive, const char* newTransport) : Trajet(newDepart, newArrive){
     #ifdef MAP
         cout << "Appel au constructeur de <TrajetSimple>" << endl;
     #endif
+
+    transport = new char[strlen(newTransport) + 1];
+    strcpy(transport, newTransport);
 }
 
 TrajetSimple::~TrajetSimple () {
@@ -20,6 +23,6 @@ void TrajetSimple::Afficher() const {
     cout << " de " << depart << " a " << arrive << " en " << transport << endl;
 }
 
-const char* TrajetSimple::GetTransport() {
+char* TrajetSimple::GetTransport() {
     return transport;
 }
