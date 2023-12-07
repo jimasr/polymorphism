@@ -69,6 +69,7 @@ int main()
             {
                 char debut3[100];
                 char fin3[100];
+                char transport[100];
                 char Moyen[100];
                 cout << "Ville de départ : ";
                 cin >> debut3;
