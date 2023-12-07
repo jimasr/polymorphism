@@ -10,9 +10,8 @@ Trajet::Trajet(const char* newDepart, const char* newArrive) {
     #endif
 
     depart = new char[strlen(newDepart) + 1];
-    strcpy(depart, newDepart);
-
     arrive = new char[strlen(newArrive) + 1];
+    strcpy(depart, newDepart);
     strcpy(arrive, newArrive);
 } 
 

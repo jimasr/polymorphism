@@ -58,16 +58,19 @@ int main()
 
         switch (choix)
         {
+            int parcours;
+
             case 0:
                 break;
+                
             case 1:
                 cout << "Ville de départ : ";
                 cin >> debut;
                 cout << "Ville de fin : ";
                 cin >> fin;
-                int r;
-                r = cat->RechercherSimple(debut, fin);
-                if (r == 0)
+
+                parcours = cat->RechercherSimple(debut, fin);
+                if (parcours == 0)
                 {
                     cout << "Trajet non trouvé\n";
                 }

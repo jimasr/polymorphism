@@ -21,8 +21,6 @@ void Liste::Ajouter(Trajet *trajet)
         cout << "Appel au ajouter de <Liste>" << endl;
     #endif
 
-    cout << "Ajout de " << trajet->GetDepart() << " à " << trajet->GetArrive() << endl;
-
     Noeud * noeud = new Noeud(nullptr, trajet);
     if (tete == nullptr)
     {
@@ -30,13 +28,10 @@ void Liste::Ajouter(Trajet *trajet)
         return;
     }
 
-    cout << "Hello" << endl;
-
     Noeud *temp = tete;
     while (temp->GetNoeudSuivant() != nullptr)
     {
         temp = temp->GetNoeudSuivant();
-        cout << "temp : " << temp->GetTrajet()->GetDepart() << " " << temp->GetTrajet()->GetArrive() << endl;
     }
 
     temp->SetNoeudSuivant(noeud);

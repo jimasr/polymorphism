@@ -20,7 +20,7 @@ TrajetSimple::~TrajetSimple () {
 } 
 
 void TrajetSimple::Afficher() const {
-    cout << " de " << depart << " a " << arrive << " en " << transport << endl;
+    cout << "de " << depart << " a " << arrive << " en " << transport << endl;
 }
 
 char* TrajetSimple::GetTransport() {
