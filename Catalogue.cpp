@@ -56,14 +56,14 @@ int Catalogue::RechercherSimple(char *depart, char *arrive) const
     return 0;
 }
 
-int Catalogue::RechercherSimple2(char *depart, char *arrive) const
+int Catalogue::RechercherSimple2(char *depart, char *arrive, char *transport) const
 {
     Noeud *noeud = liste->GetTete();
 
     while (noeud != nullptr)
     {
         // Compare le départ et l'arrivée du trajet avec les paramètres
-        if (noeud->GetTrajet()->GetArrive() == arrive && noeud->GetTrajet()->GetDepart() == depart)
+        if (noeud->GetTrajet()->GetArrive() == arrive && noeud->GetTrajet()->GetDepart() == depart && noeud->GetTrajet()->GetTransport() == transport)
         {
             // Affiche le trajet correspondant
             return 1;

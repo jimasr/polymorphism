@@ -20,7 +20,7 @@ public:
     void AfficherCatalogue() const;
 
     int RechercherSimple(char *debut, char *fin) const;
-    int RechercherSimple2(char *debut, char *fin) const;
+    int RechercherSimple2(char *debut, char *fin, char *transport) const;
 
 protected:
     Liste *liste;
