@@ -2,38 +2,44 @@
 using namespace std;
 
 #include "Liste.h"
+#include "TrajetSimple.h"
 
 // Constructeur de Liste
 Liste::Liste()
 {
-#ifdef MAP
-    cout << "Appel au constructeur de <Liste>" << endl;
-#endif
+    #ifdef MAP
+        cout << "Appel au constructeur de <Liste>" << endl;
+    #endif
     tete = nullptr; // Initialise la liste avec un pointeur de tête nul.
 }
 
 // Ajoute un élément à la fin de la liste.
 
-void Liste::Ajouter(Trajet *elem)
+void Liste::Ajouter(Trajet *trajet)
 {
-#ifdef MAP
-    cout << "Appel au ajouter de <Liste>" << endl;
-#endif
+    #ifdef MAP
+        cout << "Appel au ajouter de <Liste>" << endl;
+    #endif
 
-    Noeud *nouveauNoeud = new Noeud(nullptr, elem);
+    cout << "Ajout de " << trajet->GetDepart() << " à " << trajet->GetArrive() << endl;
+
+    Noeud * noeud = new Noeud(nullptr, trajet);
     if (tete == nullptr)
     {
-        tete = nouveauNoeud; // Si la liste est vide, le nouvel élément devient le premier
+        tete = noeud; // Si la liste est vide, le nouvel élément devient le premier
         return;
     }
+
+    cout << "Hello" << endl;
 
     Noeud *temp = tete;
     while (temp->GetNoeudSuivant() != nullptr)
     {
         temp = temp->GetNoeudSuivant();
+        cout << "temp : " << temp->GetTrajet()->GetDepart() << " " << temp->GetTrajet()->GetArrive() << endl;
     }
 
-    temp->SetNoeudSuivant(nouveauNoeud);
+    temp->SetNoeudSuivant(noeud);
     // Ajouter le nouvel élément à la fin de la liste
 }
 
@@ -41,17 +47,15 @@ void Liste::Ajouter(Trajet *elem)
 
 void Liste::Afficher() const
 {
-#ifdef MAP
-    cout << "Appel au afficher de <Liste>" << endl;
-#endif
+    #ifdef MAP
+        cout << "Appel au afficher de <Liste>" << endl;
+    #endif
 
     Noeud *temp = tete;
     while (temp != nullptr)
     {
-
         Trajet *trajet = temp->GetTrajet();
         cout << "de " << trajet->GetDepart() << " à " << trajet->GetArrive() << endl;
-
         temp = temp->GetNoeudSuivant();
     }
 }
@@ -59,9 +63,9 @@ void Liste::Afficher() const
 // Destructeur de Liste
 Liste::~Liste()
 {
-#ifdef MAP
-    cout << "Appel au destructeur de <Liste>" << endl;
-#endif
+    #ifdef MAP
+        cout << "Appel au destructeur de <Liste>" << endl;
+    #endif
 
     Noeud *courant = tete;
     while (courant != nullptr)

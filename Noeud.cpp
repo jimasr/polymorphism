@@ -5,11 +5,11 @@ using namespace std;
 #include "Trajet.h"
 
 // Constructeur de Noeud
-Noeud::Noeud(Noeud *suivant, Trajet *traj) : noeud(suivant), trajet(traj)
+Noeud::Noeud(Noeud *suivant, Trajet *trajet) : noeud(suivant), trajet(trajet)
 {
-#ifdef MAP
-    cout << "Appel au constructeur de <Noeud>" << endl;
-#endif
+    #ifdef MAP
+        cout << "Appel au constructeur de <Noeud>" << endl;
+    #endif
 }
 
 // Obtient le nœud suivant.

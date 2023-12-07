@@ -2,49 +2,36 @@
 using namespace std;
 
 #include "Catalogue.h"
+#include "TrajetSimple.h"
 
 Catalogue::Catalogue() : liste(new Liste())
 {
-
-#ifdef MAP
-    cout << "Appel au constructeur de <Catalogue>" << endl;
-#endif
-}
-
-Catalogue::~Catalogue()
-{
-    delete liste;
-#ifdef MAP
-    cout
-        << "Appel au destructeur de <Catalogue>" << endl;
-#endif
-    // Le destructeur de Catalogue libérera automatiquement la mémoire utilisée par la Liste
+    #ifdef MAP
+        cout << "Appel au constructeur de <Catalogue>" << endl;
+    #endif
 }
 
 void Catalogue::Ajouter(Trajet *trajet)
 {
-    (*liste).Ajouter(trajet);
+    TrajetSimple * trajetSimple = dynamic_cast<TrajetSimple *>(trajet);
+    cout << trajetSimple->GetDepart() << " " << trajetSimple->GetArrive() << " " << trajetSimple->GetTransport() << endl;
+    liste->Ajouter(trajet);
 }
 
 void Catalogue::AfficherCatalogue() const
 {
-    Noeud *noeud = liste->GetTete();
-
-    while (noeud != nullptr)
-    {
-        noeud->GetTrajet()->Afficher();
-        noeud = noeud->GetNoeudSuivant();
-    }
+    liste->Afficher();
 }
 
-int Catalogue::RechercherSimple(char *depart, char *arrive) const
+int Catalogue::RechercherSimple(char *depart, char *arrive) const //send 0 if not found, 1 if found
 {
     Noeud *noeud = liste->GetTete();
 
     while (noeud != nullptr)
     {
+        Trajet *trajet = noeud->GetTrajet();
         // Compare le départ et l'arrivée du trajet avec les paramètres
-        if (noeud->GetTrajet()->GetArrive() == arrive && noeud->GetTrajet()->GetDepart() == depart)
+        if (trajet->GetArrive() == arrive && trajet->GetDepart() == depart)
         {
             // Affiche le trajet correspondant
             noeud->GetTrajet()->Afficher();
@@ -56,20 +43,31 @@ int Catalogue::RechercherSimple(char *depart, char *arrive) const
     return 0;
 }
 
-int Catalogue::RechercherSimple2(char *depart, char *arrive, char *transport) const
+
+int Catalogue::VerifierDupliquerSimple(char *depart, char *arrive, char *transport) const
 {
     Noeud *noeud = liste->GetTete();
 
     while (noeud != nullptr)
     {
+        TrajetSimple *trajetSimple = dynamic_cast<TrajetSimple *>(noeud->GetTrajet());
         // Compare le départ et l'arrivée du trajet avec les paramètres
-        if (noeud->GetTrajet()->GetArrive() == arrive && noeud->GetTrajet()->GetDepart() == depart && noeud->GetTrajet()->GetTransport() == transport)
+        if (strcmp(trajetSimple->GetArrive(), depart) && strcmp(trajetSimple->GetDepart(), depart) && strcmp(trajetSimple->GetTransport(), transport) == 0)
         {
-            // Affiche le trajet correspondant
             return 1;
         }
 
         noeud = noeud->GetNoeudSuivant();
     }
     return 0;
+}
+
+Catalogue::~Catalogue()
+{
+    delete liste;
+    #ifdef MAP
+        cout
+            << "Appel au destructeur de <Catalogue>" << endl;
+    #endif
+    // Le destructeur de Catalogue libérera automatiquement la mémoire utilisée par la Liste
 }

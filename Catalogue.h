@@ -19,8 +19,11 @@ public:
     // Affiche le catalogue
     void AfficherCatalogue() const;
 
+    //Rechercher simple
     int RechercherSimple(char *debut, char *fin) const;
-    int RechercherSimple2(char *debut, char *fin, char *transport) const;
+
+    //Verifier dupliquer
+    int VerifierDupliquerSimple(char *debut, char *fin, char *transport) const;
 
 protected:
     Liste *liste;

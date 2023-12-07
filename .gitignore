@@ -33,3 +33,13 @@
 
 #MacOS
 *.DS_Store
+
+#VisualStudio
+*.sdf
+*.opensdf
+*.suo
+*.vcxproj.user
+*.vcproj.user
+*.ncb
+*.sln
+*.vscode

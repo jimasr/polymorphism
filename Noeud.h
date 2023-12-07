@@ -9,8 +9,8 @@ class Noeud
 public:
     // Constructeur de Noeud.
     // suivant : Le pointeur vers le nœud suivant.
-    // traj : Le trajet associé au nœud.
-    Noeud(Noeud *suivant, Trajet *traj);
+    // trajet : Le trajet associé au nœud.
+    Noeud(Noeud *suivant, Trajet *trajet);
 
     // Obtient le nœud suivant.
     Noeud *GetNoeudSuivant() const;
