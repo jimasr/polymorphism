@@ -3,8 +3,11 @@
 
 #include "Liste.h"
 #include "Noeud.h"
+#include "TrajetSimple.h"
+#include "TrajetCompose.h"
 
-class Catalogue {
+class Catalogue
+{
 public:
     // Constructeur de Catalogue
     Catalogue();
@@ -13,17 +16,19 @@ public:
     ~Catalogue();
 
     // Ajoute un trajet au catalogue
-    void Ajouter(char* debut, char* fin);
+    void Ajouter(Trajet *trajet);
 
     // Affiche le catalogue
     void AfficherCatalogue() const;
-    
-    int RechercherSimple(char* debut, char* fin) const;
-    
 
-private:
-    Liste* liste;
-    
+    //Rechercher simple
+    int RechercherSimple(char *debut, char *fin) const;
+
+    //Verifier dupliquer
+    int VerifierDupliquer(char *debut, char *fin, char *transport) const;
+
+protected:
+    Liste *liste;
 };
 
 #endif
