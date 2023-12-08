@@ -2,6 +2,7 @@
 #define TRAJETCOMPOSE_H
 
 #include "Trajet.h"
+#include "TrajetSimple.h"
 #include "Liste.h"
 
 class TrajetCompose : public Trajet

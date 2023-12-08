@@ -11,6 +11,7 @@ Liste::Liste()
         cout << "Appel au constructeur de <Liste>" << endl;
     #endif
     tete = nullptr; // Initialise la liste avec un pointeur de tête nul.
+    taille = 0; 
 }
 
 // Ajoute un élément à la fin de la liste.
@@ -22,6 +23,8 @@ void Liste::Ajouter(Trajet *trajet)
     #endif
 
     Noeud * noeud = new Noeud(nullptr, trajet);
+    taille++; //increment taille
+
     if (tete == nullptr)
     {
         tete = noeud; // Si la liste est vide, le nouvel élément devient le premier
@@ -74,4 +77,25 @@ Liste::~Liste()
 Noeud *Liste::GetTete() const
 {
     return tete;
+}
+
+Noeud *Liste::GetNoeud(int index) const
+{
+    Noeud *temp = tete;
+    int i = 0;
+    while (temp != nullptr)
+    {
+        if (i == index)
+        {
+            return temp;
+        }
+        temp = temp->GetNoeudSuivant();
+        i++;
+    }
+    return nullptr;
+}
+
+int Liste::GetTaille() const
+{
+    return taille;
 }

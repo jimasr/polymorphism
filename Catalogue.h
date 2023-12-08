@@ -3,6 +3,8 @@
 
 #include "Liste.h"
 #include "Noeud.h"
+#include "TrajetSimple.h"
+#include "TrajetCompose.h"
 
 class Catalogue
 {
@@ -23,7 +25,7 @@ public:
     int RechercherSimple(char *debut, char *fin) const;
 
     //Verifier dupliquer
-    int VerifierDupliquerSimple(char *debut, char *fin, char *transport) const;
+    int VerifierDupliquer(char *debut, char *fin, char *transport) const;
 
 protected:
     Liste *liste;

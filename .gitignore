@@ -43,3 +43,4 @@
 *.ncb
 *.sln
 *.vscode
+*.vscode/.

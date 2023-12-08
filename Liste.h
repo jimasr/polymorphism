@@ -16,6 +16,11 @@ class Liste {
         void Ajouter(Trajet * elem);
         
         Noeud* GetTete() const;
+
+        Noeud* GetNoeud(int index) const;
+
+        int GetTaille() const;
+
         // Affiche la liste
         void Afficher() const;
 
@@ -25,6 +30,7 @@ class Liste {
         
 
     protected:
+        int taille;
         Noeud* tete; // Pointeur vers le premier nœud de la liste.
 };
 
