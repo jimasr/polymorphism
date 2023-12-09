@@ -19,8 +19,13 @@ TrajetSimple::~TrajetSimple () {
     delete[] transport;
 } 
 
+const char* TrajetSimple::GetMoyenTransport() const
+{
+    return transport;
+}
+
 void TrajetSimple::Afficher() const {
-    cout << "de " << depart << " à " << arrive << " en " << transport;
+    cout << "de " << depart << " a " << arrive << " en " << transport;
 }
 
 char* TrajetSimple::GetTransport() const{

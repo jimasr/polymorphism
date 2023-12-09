@@ -2,6 +2,7 @@
 #define TRAJETSIMPLE_H
 
 #include "Trajet.h"
+#include <cstring>
 
 class TrajetSimple : public Trajet 
 {
@@ -11,6 +12,7 @@ class TrajetSimple : public Trajet
         char* GetTransport() const;
         virtual bool Equals(const Trajet *trajet) const;
         virtual void Afficher() const;
+        const char* GetMoyenTransport() const;
 
     protected:
         char* transport;

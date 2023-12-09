@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstring>
 #include <cstdlib>
+#include <limits>
 
 using namespace std;
 
@@ -33,7 +34,7 @@ int main()
     char fin[100];
     int choix;
 
-    Catalogue *cat = new Catalogue(); // Création d'une instance de la classe Catalogue
+    Catalogue *cat = new Catalogue(); // Creation d'une instance de la classe Catalogue
 
     do
     {
@@ -41,7 +42,7 @@ int main()
         cout << "Menu :\n"
              << "\n"
              << "\t1: Rechercher un trajet simplement\n"
-             << "\t2: Rechercher un trajet de manière avancée\n"
+             << "\t2: Rechercher un trajet de maniere avancee\n"
              << "\t3: Ajouter un trajet au catalogue\n"
              << "\t4: Afficher le catalogue\n"
              << "\t0: Quitter\n"
@@ -66,7 +67,7 @@ int main()
                 break;
 
             case 1:
-                cout << "Ville de départ\n"
+                cout << "Ville de depart\n"
                     << " > ";
                 cin >> debut;
 
@@ -77,22 +78,23 @@ int main()
                 parcours = cat->RechercherSimple(debut, fin);
                 if (parcours == 0)
                 {
-                    cout << "Trajet non trouvé\n";
+                    cout << "Trajet non trouve\n";
                 }
                 break;
 
             case 2:
 
-                cout << "Ville de départ\n"
-                    << " > ";
-                cin >> debut;
-                
-                cout << "Ville de fin\n"
-                    << " > ";
-                cin >> fin;
+            cout << "Ville de depart\n"
+            << " > ";
+            cin >> debut;
+    
+            cout << "Ville de fin\n"
+            << " > ";
+            cin >> fin;
 
-                // Ajouter le code pour RechercherAvancee(debut, fin);
-                break;
+            cat->RechercherAvancee(debut, fin);
+            cout << "\n";
+            break;
 
             case 3 : {
                 
@@ -125,7 +127,7 @@ int main()
                         {
                             cout << "Ajout d'un trajet simple :\n"
                                 << "\n"
-                                << "Ville de départ\n"
+                                << "Ville de depart\n"
                                 << " > ";
                             cin >> debut;
 
@@ -145,7 +147,7 @@ int main()
                             }
                             else
                             {
-                                cout << "Trajet simple déjà existant\n";
+                                cout << "Trajet simple deja existant\n";
                             }
                         }
                             break;
@@ -160,13 +162,12 @@ int main()
 
                             char debutIndicator[100];
                             char finIndicator[100];
-                            
-                            do 
-                            {
-                                cout << "Ajout d'un trajet complexe : \n"
+
+
+                            cout << "Ajout d'un trajet complexe : \n"
                                 << "\n";
 
-                                cout << "Ville de départ\n"
+                                cout << "Ville de depart\n"
                                     << " > ";
                                 cin >> debut;
 
@@ -201,8 +202,47 @@ int main()
                                 }
 
                                 count++;
+                            
+                            while(flag==1) 
+                            {
+                                cout << "Ajout d'un trajet complexe : \n"
+                                << "\n";
+
+                                strcpy(debut,fin);
+
+                                cout << "Ville de fin\n"
+                                    << " > ";
+                                cin >> fin;
+
+                                cout << "Moyen de transport\n"
+                                    << " > ";
+                                cin >> transport;
+
+                                trajet = new TrajetSimple(debut, fin, transport);
+                                liste->Ajouter(trajet);
+
+                                cout << "Voulez-vous ajouter un autre trajet ?\n"
+                                    << "\n"
+                                    << "\t1: Oui\n"
+                                    << "\t2: Non\n"
+                                    << "\t3: Annuler\n"
+                                    << endl;
+
+                                cout << " > ";
+                                cin >> flag;
+
+                                if(count == 0)
+                                {
+                                    strcpy(debutIndicator, debut);
+                                }
+
+                                if(flag == 2) {
+                                    strcpy(finIndicator, fin);
+                                }
+
+                                count++;
                                 
-                            } while (flag == 1);
+                            }
                             TrajetCompose * trajetCompose = new TrajetCompose(debutIndicator, finIndicator, liste);
 
                             if(flag != 3) {
@@ -212,10 +252,10 @@ int main()
                                 } 
                                 else 
                                 {
-                                    cout << "Trajet composé déjà existant\n";
+                                    cout << "Trajet compose deja existant\n";
                                 }
                             } else {
-                                cout << "Ajout annulé\n";
+                                cout << "Ajout annule\n";
                             }
 
                         }
