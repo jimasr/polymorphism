@@ -24,6 +24,9 @@ class Liste {
         // Affiche la liste
         void Afficher() const;
 
+        // Vérifie si la liste est égal à une autre liste.
+        bool Equals(const Liste *liste) const;
+
         // Destructeur de Liste.
         // Libère la mémoire occupée par tous les nœuds de la liste.
         virtual ~Liste();

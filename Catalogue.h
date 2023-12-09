@@ -25,7 +25,7 @@ public:
     int RechercherSimple(char *debut, char *fin) const;
 
     //Verifier dupliquer
-    int VerifierDupliquer(char *debut, char *fin, char *transport) const;
+    int VerifierDupliquer(Trajet * trajet) const;
 
 protected:
     Liste *liste;

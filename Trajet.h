@@ -4,9 +4,10 @@
 class Trajet
 {
 public:
-    virtual void Afficher() const = 0;
-    char *GetDepart();
-    char *GetArrive();
+    virtual void Afficher() const;
+    char *GetDepart() const;
+    char *GetArrive() const;
+    virtual bool Equals(const Trajet *trajet) const;
     virtual ~Trajet();
 
 protected:

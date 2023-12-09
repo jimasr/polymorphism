@@ -22,10 +22,17 @@ Trajet::~Trajet () {
     #endif
 }
 
-char * Trajet::GetDepart() {
+char* Trajet::GetDepart() const {
     return depart;
 }
 
-char* Trajet::GetArrive() {
+char* Trajet::GetArrive() const {
     return arrive;
+}
+
+bool Trajet::Equals(const Trajet* trajet) const {
+    #ifdef MAP
+        cout << "Appel au equals de <Trajet>" << endl;
+    #endif
+    return !strcmp(trajet->GetDepart(), depart) && !strcmp(trajet->GetArrive(), arrive);
 }

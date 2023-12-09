@@ -12,39 +12,32 @@ Catalogue::Catalogue() : liste(new Liste())
 
 void Catalogue::Ajouter(Trajet *trajet)
 {
+    #ifdef MAP
+        cout << "Appel au ajouter de <Catalogue>" << endl;
+    #endif
     liste->Ajouter(trajet);
 }
 
 void Catalogue::AfficherCatalogue() const
 {
+    #ifdef MAP
+        cout << "Appel au afficherCatalogue de <Catalogue>" << endl;
+    #endif
     liste->Afficher();
-
-    for(int i = 0; i < liste->GetTaille(); i++)
-    {
-        Trajet *trajet = liste->GetNoeud(i)->GetTrajet();
-        cout << i + 1 << " : ";
-        if (dynamic_cast<TrajetCompose *>(trajet)) //test type
-        {
-            TrajetCompose *trajetCompose = dynamic_cast<TrajetCompose *>(trajet);
-            trajetCompose->Afficher();
-        } else if (dynamic_cast<TrajetSimple *>(trajet))
-        {  
-            TrajetSimple *trajetSimple = dynamic_cast<TrajetSimple *>(trajet);
-            trajetSimple->Afficher();
-        }
-        cout << endl;
-    }
 }
 
 int Catalogue::RechercherSimple(char *depart, char *arrive) const //send 0 if not found, 1 if found
 {
+    #ifdef MAP
+        cout << "Appel au rechercherSimple de <Catalogue>" << endl;
+    #endif
     Noeud *noeud = liste->GetTete();
 
     int count = 0;
 
     while (noeud != nullptr)
     {
-        Trajet *trajet = noeud->GetTrajet();
+        const Trajet *trajet = noeud->GetTrajet();
         
         // Compare le départ et l'arrivée du trajet avec les paramètres
         if (!strcmp(trajet->GetArrive(), arrive) && !strcmp(trajet->GetDepart(), depart))
@@ -60,24 +53,24 @@ int Catalogue::RechercherSimple(char *depart, char *arrive) const //send 0 if no
 }
 
 
-int Catalogue::VerifierDupliquer(char *depart, char *arrive, char *transport) const
+int Catalogue::VerifierDupliquer(Trajet * trajet) const
 {
+    #ifdef MAP
+        cout << "Appel au verifierDupliquer de <Catalogue>" << endl;
+    #endif
     Noeud *noeud = liste->GetTete();
-
-    while (noeud != nullptr)
+    
+    while(noeud != nullptr)
     {
-        //Implement Verifier Dupliquer pour les
-
-        // TrajetSimple *trajetSimple = dynamic_cast<TrajetSimple *>(noeud->GetTrajet());
-        // // Compare le départ et l'arrivée du trajet avec les paramètres
-        // if (strcmp(trajetSimple->GetArrive(), depart) && strcmp(trajetSimple->GetDepart(), depart) && strcmp(trajetSimple->GetTransport(), transport) == 0)
-        // {
-        //     return 1;
-        // }
-
+        const Trajet *t = noeud->GetTrajet();
+        if(trajet->Equals(t))
+        {
+            return 1; // si un duplique trajet est trouvé
+        }
         noeud = noeud->GetNoeudSuivant();
     }
-    return 0;
+    return 0; // si aucun duplique trajet n'est trouvé
+
 }
 
 Catalogue::~Catalogue()

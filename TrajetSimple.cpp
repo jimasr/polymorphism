@@ -23,6 +23,19 @@ void TrajetSimple::Afficher() const {
     cout << "de " << depart << " a " << arrive << " en " << transport;
 }
 
-char* TrajetSimple::GetTransport() {
+char* TrajetSimple::GetTransport() const{
     return transport;
+}
+
+bool TrajetSimple::Equals(const Trajet *trajet) const
+{
+    #ifdef MAP
+        cout << "Appel au equals de <TrajetSimple>" << endl;
+    #endif
+    const TrajetSimple *trajetSimple = dynamic_cast<const TrajetSimple *>(trajet);
+    if(trajetSimple != nullptr)
+    {
+        return !strcmp(trajetSimple->GetDepart(), depart) && !strcmp(trajetSimple->GetArrive(), arrive) && !strcmp(trajetSimple->GetTransport(), transport);
+    }
+    return false;
 }

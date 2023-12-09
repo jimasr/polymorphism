@@ -10,8 +10,9 @@ class TrajetCompose : public Trajet
 public:
 	TrajetCompose(const char *depart, const char *arrive, Liste *liste);
 	virtual void Afficher() const;
-	Liste *GetListe();
+	Liste *GetListe() const;
 	virtual ~TrajetCompose();
+	virtual bool Equals(const Trajet *trajet) const;
 
 protected:
 	Liste *liste;
