@@ -4,7 +4,7 @@
 class Trajet
 {
 public:
-    virtual void Afficher() const;
+    virtual void Afficher() const {}; // Add function definition for 'Afficher'
     char *GetDepart() const;
     char *GetArrive() const;
     virtual bool Equals(const Trajet *trajet) const;

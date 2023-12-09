@@ -1,15 +1,16 @@
-#if ! defined ( TRAJETSIMPLE_H )
+#if !defined(TRAJETSIMPLE_H)
 #define TRAJETSIMPLE_H
 
 #include "Trajet.h"
 
-class TrajetSimple : public Trajet {
+class TrajetSimple : public Trajet 
+{
     public:
         TrajetSimple (const char* depart, const char* arrive, const char* transport);
-        virtual ~TrajetSimple( );
+        virtual ~TrajetSimple();
         char* GetTransport() const;
-        virtual void Afficher() const;
         virtual bool Equals(const Trajet *trajet) const;
+        virtual void Afficher() const;
 
     protected:
         char* transport;

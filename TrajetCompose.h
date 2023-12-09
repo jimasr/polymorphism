@@ -7,15 +7,15 @@
 
 class TrajetCompose : public Trajet
 {
-public:
-	TrajetCompose(const char *depart, const char *arrive, Liste *liste);
-	virtual void Afficher() const;
-	Liste *GetListe() const;
-	virtual ~TrajetCompose();
-	virtual bool Equals(const Trajet *trajet) const;
+	public:
+		TrajetCompose(const char *depart, const char *arrive, Liste *liste);
+		virtual ~TrajetCompose();
+		Liste *GetListe() const;
+		virtual bool Equals(const Trajet *trajet) const;
+		virtual void Afficher() const;
 
-protected:
-	Liste *liste;
+	protected:
+		Liste *liste;
 };
 
 #endif

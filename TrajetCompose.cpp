@@ -52,6 +52,7 @@ TrajetCompose::~TrajetCompose()
     #ifdef MAP
         cout << "Appel au destructeur de <TrajetCompose>" << endl;
     #endif
+    delete liste;
 }
 
 bool TrajetCompose::Equals(const Trajet *trajet) const
