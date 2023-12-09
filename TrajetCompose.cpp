@@ -79,8 +79,9 @@ bool TrajetCompose::Equals(const Trajet *trajet) const
                     noeud = noeud->GetNoeudSuivant();
                     other = other->GetNoeudSuivant();
                 }
+                return true;
             }
         }
     }
-    return true;
+    return false;
 }

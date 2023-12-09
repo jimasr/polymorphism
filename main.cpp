@@ -206,11 +206,13 @@ int main()
                             TrajetCompose * trajetCompose = new TrajetCompose(debutIndicator, finIndicator, liste);
 
                             if(flag != 3) {
-                                if (!cat->VerifierDupliquer(trajetCompose)) {
+                                if (!cat->VerifierDupliquer(trajetCompose)) 
+                                {
                                     cat->Ajouter(trajetCompose);
-                                } else {
-                                cout << "Trajet composé déjà existant\n";
-
+                                } 
+                                else 
+                                {
+                                    cout << "Trajet composé déjà existant\n";
                                 }
                             } else {
                                 cout << "Ajout annulé\n";
