@@ -1,8 +1,8 @@
 #include <iostream>
+#include <cstring>
 using namespace std;
 
 #include "Trajet.h"
-
 
 Trajet::Trajet(const char* newDepart, const char* newArrive) {
     #ifdef MAP
@@ -15,17 +15,26 @@ Trajet::Trajet(const char* newDepart, const char* newArrive) {
     strcpy(arrive, newArrive);
 } 
 
-
 Trajet::~Trajet () {
     #ifdef MAP
         cout << "Appel au destructeur de <Trajet>" << endl;
     #endif
+    delete[] depart;
+    delete[] arrive;
 }
 
-char * Trajet::GetDepart() {
+char* Trajet::GetDepart() const {
     return depart;
 }
 
-char* Trajet::GetArrive() {
+char* Trajet::GetArrive() const {
     return arrive;
+}
+
+bool Trajet::Equals(const Trajet* trajet) const {
+    #ifdef MAP
+        cout << "Appel au equals de <Trajet>" << endl;
+    #endif
+    return !strcmp(trajet->GetDepart(), depart) && 
+        !strcmp(trajet->GetArrive(), arrive);
 }

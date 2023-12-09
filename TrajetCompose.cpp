@@ -27,17 +27,19 @@ void TrajetCompose::Afficher() const
         cout << "Appel au afficher de <TrajetCompose>" << endl;
     #endif
 
-    for(int i = 0; i < liste->GetTaille(); i++)
+    Noeud *noeud = liste->GetTete();
+    while(noeud != nullptr)
     {
-        Trajet *trajet = liste->GetNoeud(i)->GetTrajet();
-        TrajetSimple * trajetSimple = dynamic_cast<TrajetSimple *>(trajet);
-
-        trajetSimple->Afficher();
+        const Trajet *trajet = noeud->GetTrajet();
+        trajet->Afficher();
+        if(noeud->GetNoeudSuivant() != nullptr) 
         cout << " - ";
+
+        noeud = noeud->GetNoeudSuivant();
     }
 }
 
-Liste *TrajetCompose::GetListe()
+Liste *TrajetCompose::GetListe() const
 {
     #ifdef MAP
         cout << "Appel au getter liste de <TrajetCompose>" << endl;
@@ -50,4 +52,36 @@ TrajetCompose::~TrajetCompose()
     #ifdef MAP
         cout << "Appel au destructeur de <TrajetCompose>" << endl;
     #endif
+    delete liste;
+}
+
+bool TrajetCompose::Equals(const Trajet *trajet) const
+{
+    #ifdef MAP
+        cout << "Appel au equals de <TrajetCompose>" << endl;
+    #endif
+    const TrajetCompose *trajetCompose = dynamic_cast<const TrajetCompose *>(trajet);
+
+    if(trajetCompose != nullptr)
+    {
+        if(!strcmp(trajetCompose->GetDepart(), depart) && !strcmp(trajetCompose->GetArrive(), arrive))
+        {
+            if(trajetCompose->GetListe()->GetTaille() == liste->GetTaille())
+            {
+                Noeud *noeud = liste->GetTete();
+                Noeud *other = trajetCompose->GetListe()->GetTete();
+                while(noeud != nullptr)
+                {
+                    if(!noeud->GetTrajet()->Equals(other->GetTrajet()))
+                    {
+                        return false;
+                    }
+                    noeud = noeud->GetNoeudSuivant();
+                    other = other->GetNoeudSuivant();
+                }
+                return true;
+            }
+        }
+    }
+    return false;
 }

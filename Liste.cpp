@@ -48,13 +48,18 @@ void Liste::Afficher() const
     #ifdef MAP
         cout << "Appel au afficher de <Liste>" << endl;
     #endif
-
+    int count = 0;
     Noeud *temp = tete;
     while (temp != nullptr)
     {
-        Trajet *trajet = temp->GetTrajet();
-        cout << "de " << trajet->GetDepart() << " à " << trajet->GetArrive() << endl;
+        const Trajet *trajet = temp->GetTrajet();
+
+        cout << count + 1 << " : ";
+        trajet->Afficher();
+        cout << endl;
         temp = temp->GetNoeudSuivant();
+
+        count++;
     }
 }
 
@@ -98,4 +103,34 @@ Noeud *Liste::GetNoeud(int index) const
 int Liste::GetTaille() const
 {
     return taille;
+}
+
+bool Liste::Equals(const Liste *liste) const
+{
+    #ifdef MAP
+        cout << "Appel au equals de <Liste>" << endl;
+    #endif
+    if (taille != liste->GetTaille())
+    {
+        return false;
+    }
+
+    Noeud *noeud = tete;
+    Noeud *n = liste->GetTete();
+
+    while (noeud != nullptr)
+    {
+        Trajet *trajet = noeud->GetTrajet();
+        Trajet *trajet2 = n->GetTrajet();
+
+        if (!trajet->Equals(trajet2))
+        {
+            return false;
+        }
+
+        noeud = noeud->GetNoeudSuivant();
+        n = n->GetNoeudSuivant();
+    }
+
+    return true;
 }
