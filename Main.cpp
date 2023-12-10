@@ -38,7 +38,7 @@ int main()
 
     do
     {
-        //Clear();
+        Clear();
         cout << "Menu :\n"
              << "\n"
              << "\t1: Rechercher un trajet simplement\n"
@@ -54,10 +54,10 @@ int main()
         if (!(cin >> choix))
         {
             cin.clear();// Clear the error state
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignore invalid input
+            cin.ignore(INT_MAX, '\n'); // Ignore invalid input
             choix = -1; // Set to an invalid value to continue the loop
         }
-        //Clear();
+        Clear();
 
         switch (choix)
         {
@@ -67,6 +67,9 @@ int main()
                 break;
 
             case 1:
+                cout << "Recherche simple :\n"
+                    << endl;
+
                 cout << "Ville de depart\n"
                     << " > ";
                 cin >> debut;
@@ -75,26 +78,39 @@ int main()
                     << " > ";
                 cin >> fin;
 
+                Clear();
+
+                cout << "Recherche simple :\n"
+                    << endl;
+
                 parcours = cat->RechercherSimple(debut, fin);
                 if (parcours == 0)
                 {
                     cout << "Trajet non trouve\n";
                 }
+                Pause();
                 break;
 
             case 2:
+                cout << "Recherche avancee :\n"
+                    << endl;
 
-            cout << "Ville de depart\n"
-            << " > ";
-            cin >> debut;
-    
-            cout << "Ville de fin\n"
-            << " > ";
-            cin >> fin;
+                cout << "Ville de depart\n"
+                << " > ";
+                cin >> debut;
+        
+                cout << "Ville de fin\n"
+                << " > ";
+                cin >> fin;
 
-            cat->RechercherAvancee(debut, fin);
-            cout << "\n";
-            break;
+                Clear();
+
+                cout << "Recherche avancee :\n"
+                    << endl;
+                cat->RechercherAvancee(debut, fin);
+                cout << "\n";
+                Pause();
+                break;
 
             case 3 : {
                 
@@ -102,6 +118,7 @@ int main()
 
                 do
                 {
+                    Clear();
                     cout << "Voulez-vous ajouter un trajet simple ou complexe ?\n"
                         << "\n"
                         << "\t1: Simple\n"
@@ -114,10 +131,11 @@ int main()
                     if (!(cin >> ajout))
                     {
                         cin.clear();// Clear the error state
-                        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignore invalid input
+                        cin.ignore(INT_MAX, '\n'); // Ignore invalid input
                         ajout = -1; // Set to an invalid value to continue the loop
                     }
-                    // Clear();
+
+                    Clear();
 
                     switch(ajout)
                     {
@@ -177,6 +195,8 @@ int main()
                                 << " > ";
                             cin >> transport;
 
+                            Clear();
+
                             trajet = new TrajetSimple(debut, fin, transport);
                             liste->Ajouter(trajet);
 
@@ -196,6 +216,8 @@ int main()
 
                                 cout << " > ";
                                 cin >> flag;
+
+                                Clear();
 
                                 if(flag == 2) {
                                     strcpy(finIndicator, fin);
@@ -248,18 +270,19 @@ int main()
 
                 break;
             case 4:
+                cout << "Affichage du catalogue :\n"
+                    << endl;
                 cat->AfficherCatalogue();
+                Pause();
                 break;
 
             default:
                 cout << "Choix incorrect\n";
         }
 
-        //Pause();
-
     } while (choix != 0);
 
-    //Clear();
+    Clear();
 
     cout << "Au revoir\n"
          << endl;

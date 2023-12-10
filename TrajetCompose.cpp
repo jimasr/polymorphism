@@ -30,10 +30,12 @@ void TrajetCompose::Afficher() const
     #endif
 
     Noeud *noeud = liste->GetTete();
+    cout << "(TC)";
     while(noeud != nullptr)
     {
-        const Trajet *trajet = noeud->GetTrajet();
-        trajet->Afficher();
+        const TrajetSimple *trajet = dynamic_cast<const TrajetSimple *>(noeud->GetTrajet());
+        cout << " de " << trajet->GetDepart() << " a " << trajet->GetArrive() << " en " << trajet->GetTransport();
+
         if(noeud->GetNoeudSuivant() != nullptr) 
         cout << " - ";
 
