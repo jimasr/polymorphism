@@ -5,6 +5,7 @@
 #include "Noeud.h"
 #include "TrajetSimple.h"
 #include "TrajetCompose.h"
+#include <cstring>
 
 class Catalogue
 {
@@ -24,11 +25,16 @@ public:
     //Rechercher simple
     int RechercherSimple(char *debut, char *fin) const;
 
+    void RechercherAvancee(char *debut, char *fin) const;
+
     //Verifier dupliquer
     int VerifierDupliquer(Trajet * trajet) const;
 
 protected:
-    Liste *liste;
+
+// Dans Catalogue.h
+bool RechercherTransitif(const char *depart, const char *arrive, char **visited, int &visitedCount, Trajet **currentPath, int &pathCount, int &count) const;
+Liste *liste;
 };
 
 #endif

@@ -2,6 +2,8 @@
 using namespace std;
 
 #include "TrajetCompose.h" 
+#include <cstring>
+
 
 TrajetCompose::TrajetCompose(const char *depart, const char *arrive, Liste *liste) : Trajet(depart, arrive)
 {
