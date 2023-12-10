@@ -33,8 +33,8 @@ public:
 protected:
 
 // Dans Catalogue.h
- bool RechercherTransitif(const char *depart, const char *arrive, char **visited, int &visitedCount, char **currentPath, int &pathCount, int &count) const;
- Liste *liste;
+bool RechercherTransitif(const char *depart, const char *arrive, char **visited, int &visitedCount, Trajet **currentPath, int &pathCount, int &count) const;
+Liste *liste;
 };
 
 #endif

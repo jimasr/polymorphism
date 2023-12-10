@@ -140,6 +140,7 @@ int main()
                             cin >> transport;
 
                             TrajetSimple * trajet = new TrajetSimple(debut, fin, transport);
+                            cout << endl;
 
                             if (!cat->VerifierDupliquer(trajet))
                             {
@@ -171,7 +172,7 @@ int main()
                                     << " > ";
                                 cin >> debut;
 
-                                cout << "Ville de fin\n"
+                                cout << "Ville de fin temporaire\n"
                                     << " > ";
                                 cin >> fin;
 
@@ -210,7 +211,7 @@ int main()
 
                                 strcpy(debut,fin);
 
-                                cout << "Ville de fin\n"
+                                cout << "Nouvelle ville de fin\n"
                                     << " > ";
                                 cin >> fin;
 
@@ -257,9 +258,7 @@ int main()
                             } else {
                                 cout << "Ajout annule\n";
                             }
-
                         }
-
                             break;
 
                         default:

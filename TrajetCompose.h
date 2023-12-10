@@ -13,7 +13,6 @@ class TrajetCompose : public Trajet
 		Liste *GetListe() const;
 		virtual bool Equals(const Trajet *trajet) const;
 		virtual void Afficher() const;
-		char* ToString() const;
 
 	protected:
 		Liste *liste;
