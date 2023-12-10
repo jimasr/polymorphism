@@ -1,4 +1,13 @@
-#if !defined(TRAJET_H)
+/*************************************************************************
+                           Trajet  -  description
+                             -------------------
+    début                : 21 novembre 2023
+    copyright            : (C) 2023 par H. ASRI, N. CATHERINE, J. HABBA, S. PERRET
+    e-mail               : hazim.asri@insa-lyon.fr, noam.catherine@insa-lyon.fr, jassir.habba@insa-lyon.fr, simon.perret@insa-lyon.fr
+*************************************************************************/
+
+//---------- Interface de la classe <Trajet> (fichier Trajet.h) ----------------
+#ifndef TRAJET_H
 #define TRAJET_H
 
 class Trajet
