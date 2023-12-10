@@ -25,7 +25,7 @@ const char* TrajetSimple::GetMoyenTransport() const
 }
 
 void TrajetSimple::Afficher() const {
-    cout << "de " << depart << " a " << arrive << " en " << transport;
+    cout << "(TS) de " << depart << " a " << arrive << " en " << transport;
 }
 
 char* TrajetSimple::GetTransport() const{

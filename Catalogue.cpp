@@ -43,6 +43,7 @@ int Catalogue::RechercherSimple(char *depart, char *arrive) const //send 0 if no
         if (!strcmp(trajet->GetArrive(), arrive) && !strcmp(trajet->GetDepart(), depart))
         {
             // Affiche le trajet correspondant
+            cout << "Trajet trouve : ";
             noeud->GetTrajet()->Afficher();
             cout << endl;
             count++;
