@@ -140,7 +140,6 @@ int main()
                             cin >> transport;
 
                             TrajetSimple * trajet = new TrajetSimple(debut, fin, transport);
-                            cout << endl;
 
                             if (!cat->VerifierDupliquer(trajet))
                             {
@@ -156,7 +155,6 @@ int main()
                         {
 
                             int flag = 0;
-                            int count = 0;
 
                             TrajetSimple * trajet;
                             Liste * liste = new Liste();
@@ -164,63 +162,30 @@ int main()
                             char debutIndicator[100];
                             char finIndicator[100];
 
-
                             cout << "Ajout d'un trajet complexe : \n"
                                 << "\n";
 
-                                cout << "Ville de depart\n"
-                                    << " > ";
-                                cin >> debut;
+                            cout << "Ville de depart\n"
+                                << " > ";
+                            cin >> debut;
 
-                                cout << "Ville de fin temporaire\n"
-                                    << " > ";
-                                cin >> fin;
+                            cout << "Ville prochaine\n"
+                                << " > ";
+                            cin >> fin;
 
-                                cout << "Moyen de transport\n"
-                                    << " > ";
-                                cin >> transport;
+                            cout << "Moyen de transport\n"
+                                << " > ";
+                            cin >> transport;
 
-                                trajet = new TrajetSimple(debut, fin, transport);
-                                liste->Ajouter(trajet);
+                            trajet = new TrajetSimple(debut, fin, transport);
+                            liste->Ajouter(trajet);
 
-                                cout << "Voulez-vous ajouter un autre trajet ?\n"
-                                    << "\n"
-                                    << "\t1: Oui\n"
-                                    << "\t2: Non\n"
-                                    << "\t3: Annuler\n"
-                                    << endl;
+                            strcpy(debutIndicator, debut);
 
-                                cout << " > ";
-                                cin >> flag;
-
-                                if(count == 0)
-                                {
-                                    strcpy(debutIndicator, debut);
-                                }
-
-                                if(flag == 2) {
-                                    strcpy(finIndicator, fin);
-                                }
-
-                                count++;
-                            
-                            while(flag==1) 
+                            do
                             {
                                 cout << "Ajout d'un trajet complexe : \n"
-                                << "\n";
-
-                                strcpy(debut,fin);
-
-                                cout << "Nouvelle ville de fin\n"
-                                    << " > ";
-                                cin >> fin;
-
-                                cout << "Moyen de transport\n"
-                                    << " > ";
-                                cin >> transport;
-
-                                trajet = new TrajetSimple(debut, fin, transport);
-                                liste->Ajouter(trajet);
+                                    << "\n";
 
                                 cout << "Voulez-vous ajouter un autre trajet ?\n"
                                     << "\n"
@@ -232,18 +197,27 @@ int main()
                                 cout << " > ";
                                 cin >> flag;
 
-                                if(count == 0)
-                                {
-                                    strcpy(debutIndicator, debut);
-                                }
-
                                 if(flag == 2) {
                                     strcpy(finIndicator, fin);
                                 }
 
-                                count++;
-                                
-                            }
+                                if(flag == 1) {
+                                    strcpy(debut,fin);
+
+                                    cout << "Ville prochaine\n"
+                                        << " > ";
+                                    cin >> fin;
+
+                                    cout << "Moyen de transport\n"
+                                        << " > ";
+                                    cin >> transport;
+
+                                    trajet = new TrajetSimple(debut, fin, transport);
+                                    liste->Ajouter(trajet);
+                                }
+
+                            } while(flag == 1);
+                            
                             TrajetCompose * trajetCompose = new TrajetCompose(debutIndicator, finIndicator, liste);
 
                             if(flag != 3) {
@@ -259,6 +233,7 @@ int main()
                                 cout << "Ajout annule\n";
                             }
                         }
+
                             break;
 
                         default:
