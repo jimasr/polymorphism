@@ -10,32 +10,66 @@
 #ifndef NOEUD_H
 #define NOEUD_H
 
+//--------------------------------------------------- Interfaces utilisées
 #include "Trajet.h"
 
+//------------------------------------------------------------- Constantes
+
+//------------------------------------------------------------------ Types
+
+//------------------------------------------------------------------------
+// Rôle de la classe <Noeud>
 // Représente un nœud dans une liste chaînée.
+//
+//------------------------------------------------------------------------
 class Noeud
 {
 public:
-    // Constructeur de Noeud.
-    // suivant : Le pointeur vers le nœud suivant.
-    // trajet : Le trajet associé au nœud.
-    Noeud(Noeud *suivant, Trajet *trajet);
+//----------------------------------------------------------------- PUBLIC
 
-    // Obtient le nœud suivant.
+//----------------------------------------------------- Méthodes publiques
     Noeud *GetNoeudSuivant() const;
+    // Mode d'emploi :
+    // Obtient le nœud suivant
+    // Contrat :
+    //
 
-    // Modifie le noeud suivant.
     void SetNoeudSuivant(Noeud *suivant);
+    // Mode d'emploi :
+    // Modifie le noeud suivant
+    // Contrat :
+    //
 
-    // Obtient le trajet associé au nœud.
     Trajet *GetTrajet() const;
+    // Mode d'emploi :
+    // Obtient le trajet associé au nœud
+    // Contrat :
+    //
+
+//-------------------------------------------- Constructeurs - destructeur
+    Noeud(Noeud *suivant, Trajet *trajet);
+    // Mode d'emploi :
+    // suivant : Le pointeur vers le nœud suivant
+    // trajet : Le trajet associé au nœud
+    // Contrat :
+    //
 
     // Destructeur de Noeud.
     virtual ~Noeud();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
 
+//------------------------------------------------------------------ PRIVE
 private:
+//----------------------------------------------------- Méthodes protégées
+
+//----------------------------------------------------- Attributs protégés
     Noeud *noeud;   // Pointeur vers le nœud suivant.
     Trajet *trajet; // Trajet associé au nœud.
 };
 
-#endif
+//------------------------------ Autres définitions dépendantes de <Noeud>
+
+#endif // NOEUD_H

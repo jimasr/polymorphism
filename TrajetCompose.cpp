@@ -1,28 +1,28 @@
+/*************************************************************************
+                           TrajetCompose  -  description
+                             -------------------
+    début                : 21 novembre 2023
+    copyright            : (C) 2023 par H. ASRI, N. CATHERINE, J. HABBA, S. PERRET
+    e-mail               : hazim.asri@insa-lyon.fr, noam.catherine@insa-lyon.fr, jassir.habba@insa-lyon.fr, simon.perret@insa-lyon.fr
+*************************************************************************/
+
+//---------- Réalisation de la classe <TrajetCompose> (fichier TrajetCompose.cpp) ----------------
+
+//---------------------------------------------------------------- INCLUDE
+
+//-------------------------------------------------------- Include système
 #include <iostream>
 using namespace std;
 
+//------------------------------------------------------ Include personnel
 #include "TrajetCompose.h" 
 #include <cstring>
 
+//------------------------------------------------------------- Constantes
 
-TrajetCompose::TrajetCompose(const char *depart, const char *arrive, Liste *liste) : Trajet(depart, arrive)
-{
-    #ifdef MAP
-        cout << "Appel au constructeur de <TrajetCompose>" << endl;
-    #endif
-    this->liste = new Liste();
-    for(int i = 0; i < liste->GetTaille(); i++) // copie profonde
-    {
-        this->liste->Ajouter(liste->GetNoeud(i)->GetTrajet());
-    }
+//----------------------------------------------------------------- PUBLIC
 
-    this->depart = new char[strlen(depart) + 1];
-    this->arrive = new char[strlen(arrive) + 1];
-
-    strcpy(this->depart, depart);
-    strcpy(this->arrive, arrive);
-}
-
+//----------------------------------------------------- Méthodes publiques
 void TrajetCompose::Afficher() const
 {
     #ifdef MAP
@@ -41,7 +41,8 @@ void TrajetCompose::Afficher() const
 
         noeud = noeud->GetNoeudSuivant();
     }
-}
+} //----- Fin de Méthode Afficher
+
 
 Liste *TrajetCompose::GetListe() const
 {
@@ -49,15 +50,8 @@ Liste *TrajetCompose::GetListe() const
         cout << "Appel au getter liste de <TrajetCompose>" << endl;
     #endif
     return liste;
-}
+} //----- Fin de Méthode GetListe
 
-TrajetCompose::~TrajetCompose()
-{
-    #ifdef MAP
-        cout << "Appel au destructeur de <TrajetCompose>" << endl;
-    #endif
-    delete liste;
-}
 
 bool TrajetCompose::Equals(const Trajet *trajet) const
 {
@@ -88,4 +82,31 @@ bool TrajetCompose::Equals(const Trajet *trajet) const
         }
     }
     return false;
-}
+} //----- Fin de Méthode Equals
+
+//-------------------------------------------- Constructeurs - destructeur
+TrajetCompose::TrajetCompose(const char *depart, const char *arrive, Liste *liste) : Trajet(depart, arrive)
+{
+    #ifdef MAP
+        cout << "Appel au constructeur de <TrajetCompose>" << endl;
+    #endif
+    this->liste = new Liste();
+    for(int i = 0; i < liste->GetTaille(); i++) // copie profonde
+    {
+        this->liste->Ajouter(liste->GetNoeud(i)->GetTrajet());
+    }
+
+    this->depart = new char[strlen(depart) + 1];
+    this->arrive = new char[strlen(arrive) + 1];
+
+    strcpy(this->depart, depart);
+    strcpy(this->arrive, arrive);
+} //----- Fin de TrajetCompose
+
+TrajetCompose::~TrajetCompose()
+{
+    #ifdef MAP
+        cout << "Appel au destructeur de <TrajetCompose>" << endl;
+    #endif
+    delete liste;
+} //----- Fin de ~TrajetCompose

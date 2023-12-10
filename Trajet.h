@@ -7,22 +7,73 @@
 *************************************************************************/
 
 //---------- Interface de la classe <Trajet> (fichier Trajet.h) ----------------
-#ifndef TRAJET_H
+#if !defined(TRAJET_H)
 #define TRAJET_H
+
+//--------------------------------------------------- Interfaces utilisées
+
+//------------------------------------------------------------- Constantes
+
+//------------------------------------------------------------------ Types
+
+//------------------------------------------------------------------------
+// Rôle de la classe <Trajet>
+// Classe Abstraite dont hérite TrajetSimple et TrajetCompose
+//
+//------------------------------------------------------------------------
 
 class Trajet
 {
+//----------------------------------------------------------------- PUBLIC
 public:
-    virtual void Afficher() const {}; // Add function definition for 'Afficher'
-    char *GetDepart() const;
-    char *GetArrive() const;
-    virtual bool Equals(const Trajet *trajet) const;
-    virtual ~Trajet();
+//----------------------------------------------------- Méthodes publiques
+    virtual void Afficher() const {};
+    // Mode d'emploi :
+    // Add function definition for 'Afficher'
+    // Contrat :
+    //
 
+    char *GetDepart() const;
+    // Mode d'emploi :
+    // Get la chaine de caractère de la ville de départ
+    // Contrat :
+    //
+    
+
+    char *GetArrive() const;
+    // Mode d'emploi :
+    // Get la chaine de caractère de la ville d'arrive
+    // Contrat :
+    //
+    
+
+    virtual bool Equals(const Trajet *trajet) const;
+    // Mode d'emploi :
+    // 
+    // Contrat :
+    //
+
+//-------------------------------------------- Constructeurs - destructeur
+    virtual ~Trajet();
+    // Mode d'emploi :
+    // Destructeur de Trajet
+    // Contrat :
+    //
+
+//------------------------------------------------------------------ PRIVE
 protected:
+//----------------------------------------------------- Attributs protégés
+    Trajet(const char *depart, const char *arrive);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+//----------------------------------------------------- Méthodes protégées
     char *depart;
     char *arrive;
-    Trajet(const char *depart, const char *arrive);
 };
 
-#endif
+//----------------------------- Autres définitions dépendantes de <Trajet>
+
+#endif // TRAJET_H

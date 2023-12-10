@@ -10,40 +10,83 @@
 #ifndef CATALOGUE_H
 #define CATALOGUE_H
 
+//--------------------------------------------------- Interfaces utilisées
 #include "Liste.h"
 #include "Noeud.h"
 #include "TrajetSimple.h"
 #include "TrajetCompose.h"
 #include <cstring>
 
+//------------------------------------------------------------- Constantes
+
+//------------------------------------------------------------------ Types
+
+//------------------------------------------------------------------------
+// Rôle de la classe <Catalogue>
+// Référencement de tous les trajets disponible à l'utilisateur
+//
+//------------------------------------------------------------------------
 class Catalogue
 {
+//----------------------------------------------------------------- PUBLIC
 public:
-    // Constructeur de Catalogue
+
+//----------------------------------------------------- Méthodes publiques
+    void Ajouter(Trajet *trajet);
+    // Mode d'emploi :
+    // Ajoute un trajet au catalogue
+    // Contrat :
+    //
+
+    void AfficherCatalogue() const;
+    // Mode d'emploi :
+    // Affiche le catalogue
+    // Contrat :
+    //
+
+    int RechercherSimple(char *debut, char *fin) const;
+    // Mode d'emploi :
+    // Rechercher simple
+    // Contrat :
+    //
+
+    void RechercherAvancee(char *debut, char *fin) const;
+    // Mode d'emploi :
+    // Rechercher avancée pour les trajets complexe
+    // Contrat :
+    //
+
+    int VerifierDupliquer(Trajet * trajet) const;
+    // Mode d'emploi :
+    // Verifier qu'il n'existe pas déjà ce trajet
+    // Contrat :
+    //
+
+//-------------------------------------------- Constructeurs - destructeur
     Catalogue();
+    // Mode d'emploi :
+    // Constructeur de Catalogue
+    // Contrat :
+    //
 
     // Destructeur de Catalogue
     ~Catalogue();
+    // Mode d'emploi :
+    // Destructeur de Catalogue
+    // Contrat :
+    //
 
-    // Ajoute un trajet au catalogue
-    void Ajouter(Trajet *trajet);
 
-    // Affiche le catalogue
-    void AfficherCatalogue() const;
-
-    //Rechercher simple
-    int RechercherSimple(char *debut, char *fin) const;
-
-    void RechercherAvancee(char *debut, char *fin) const;
-
-    //Verifier dupliquer
-    int VerifierDupliquer(Trajet * trajet) const;
+//------------------------------------------------------------------ PRIVE
 
 protected:
+//----------------------------------------------------- Méthodes protégées
+bool rechercherTransitif(const char *depart, const char *arrive, char **visited, int &visitedCount, Trajet **currentPath, int &pathCount, int &count) const;
 
-// Dans Catalogue.h
-bool RechercherTransitif(const char *depart, const char *arrive, char **visited, int &visitedCount, Trajet **currentPath, int &pathCount, int &count) const;
+//----------------------------------------------------- Attributs protégés
 Liste *liste;
 };
 
-#endif
+//-------------------------------- Autres définitions dépendantes de <Catalogue>
+
+#endif // CATALOGUE_H
