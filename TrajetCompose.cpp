@@ -108,5 +108,7 @@ TrajetCompose::~TrajetCompose()
     #ifdef MAP
         cout << "Appel au destructeur de <TrajetCompose>" << endl;
     #endif
+    delete[] depart;
+    delete[] arrive;
     delete liste;
 } //----- Fin de ~TrajetCompose

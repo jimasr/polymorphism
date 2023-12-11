@@ -227,6 +227,7 @@ int main()
                                 else 
                                 {
                                     cout << "Trajet compose deja existant\n";
+                                    delete trajetCompose;
                                 }
                             } else {
                                 cout << "Ajout annule\n";

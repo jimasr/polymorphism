@@ -100,10 +100,7 @@ void Catalogue::RechercherAvancee(char* debut, char* fin) const
 
     rechercherTransitif(debut, fin, visited, visitedCount, currentPath, pathCount, count);
 
-    for (int i = 0; i < visitedCount; i++)
-    {
-        delete[] visited[i];
-    }
+    
 }//----- Fin de Méthode
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -188,5 +185,11 @@ bool Catalogue::rechercherTransitif(const char *depart, const char *arrive, char
 
     // Retire la ville de départ de la liste des villes visitées.
     visitedCount--;
+
+    for (int i = 0; i <= visitedCount; i++) {
+        delete[] visited[i];
+    }
+
+    delete[] visited;
     return false; // Retourne false pour continuer la recherche.
 }//----- Fin de Méthode

@@ -146,6 +146,7 @@ Liste::~Liste()
     while (courant != NULL)
     {
         Noeud *suivant = courant->GetNoeudSuivant();
+        delete courant->GetTrajet();
         delete courant;
         courant = suivant;
     }
