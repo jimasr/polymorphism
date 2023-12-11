@@ -5,30 +5,16 @@
 
 using namespace std;
 
-#if defined(_WIN32) || defined(_WIN64)
-    #define CLEAR_CONSOLE "cls"
-    #define PAUSE_COMMAND "pause"
-#else
-    #define CLEAR_CONSOLE "clear"
-    #define PAUSE_COMMAND "read -p \"Appuyez sur une touche pour continuer . . .\""
-#endif
-
 #include "TrajetCompose.h"
 #include "TrajetSimple.h"
 #include "Catalogue.h"
 #include "Liste.h"
 
 static void Message();
-static void Pause();
-static void Clear();
 
 int main()
 {
-    //Clear();
     Message();
-
-    //Pause();
-    //Clear();
 
     char transport[100];
     char debut[100];
@@ -39,7 +25,6 @@ int main()
 
     do
     {
-        //Clear();
         cout << "Menu :\n"
              << "\n"
              << "\t1: Rechercher un trajet simplement\n"
@@ -58,7 +43,6 @@ int main()
             cin.ignore(INT_MAX, '\n'); // Ignore invalid input
             choix = -1; // Set to an invalid value to continue the loop
         }
-        //Clear();
 
         switch (choix)
         {
@@ -79,8 +63,6 @@ int main()
                     << " > ";
                 cin >> fin;
 
-                //Clear();
-
                 cout << "Recherche simple :\n"
                     << endl;
 
@@ -89,7 +71,6 @@ int main()
                 {
                     cout << "Trajet non trouve\n";
                 }
-                //Pause();
                 break;
 
             case 2:
@@ -104,13 +85,11 @@ int main()
                 << " > ";
                 cin >> fin;
 
-                //Clear();
 
                 cout << "Recherche avancee :\n"
                     << endl;
                 cat->RechercherAvancee(debut, fin);
                 cout << "\n";
-                //Pause();
                 break;
 
             case 3 : {
@@ -119,7 +98,6 @@ int main()
 
                 do
                 {
-                    //Clear();
                     cout << "Voulez-vous ajouter un trajet simple ou complexe ?\n"
                         << "\n"
                         << "\t1: Simple\n"
@@ -136,7 +114,6 @@ int main()
                         ajout = -1; // Set to an invalid value to continue the loop
                     }
 
-                    //Clear();
 
                     switch(ajout)
                     {
@@ -169,7 +146,6 @@ int main()
                                 cout << "Trajet simple deja existant\n";
                             }
 
-                            delete trajet;
                         }
                             break;
                         case 2 : 
@@ -198,7 +174,6 @@ int main()
                                 << " > ";
                             cin >> transport;
 
-                            //Clear();
 
                             trajet = new TrajetSimple(debut, fin, transport);
                             liste->Ajouter(trajet);
@@ -220,8 +195,6 @@ int main()
                                 cout << " > ";
                                 cin >> flag;
 
-                                //Clear();
-
                                 if(flag == 2) {
                                     strcpy(finIndicator, fin);
                                 }
@@ -240,7 +213,6 @@ int main()
                                     trajet = new TrajetSimple(debut, fin, transport);
                                     liste->Ajouter(trajet);
 
-                                    delete trajet;
                                 }
 
                             } while(flag == 1);
@@ -259,8 +231,6 @@ int main()
                             } else {
                                 cout << "Ajout annule\n";
                             }
-                            delete liste;
-                            delete trajetCompose;
                         }
 
                             break;
@@ -268,19 +238,14 @@ int main()
                         default:
                             cout << "Choix incorrect\n";
                     }
-                    //if(ajout != 0)
-                    //Pause();
-
                 } while (ajout != 0); 
                 
             }
-
                 break;
             case 4:
                 cout << "Affichage du catalogue :\n"
                     << endl;
                 cat->AfficherCatalogue();
-                //Pause();
                 break;
 
             default:
@@ -289,7 +254,6 @@ int main()
 
     } while (choix != 0);
 
-    //Clear();
 
     cout << "Au revoir\n"
          << endl;
@@ -307,13 +271,4 @@ static void Message()
          << " |____|   \\____/|____/ ____|__|_|  /\\___  >__|  |   __/|___|  /__/____  >__|_|  /\n\n\n\n";         
 }
 
-static void Pause()
-{
-    system(PAUSE_COMMAND);
-}
-
-static void Clear()
-{
-    system(CLEAR_CONSOLE);
-}
 
