@@ -27,7 +27,7 @@ int main()
     //Clear();
     Message();
 
-    Pause();
+    //Pause();
     //Clear();
 
     char transport[100];
@@ -168,6 +168,8 @@ int main()
                             {
                                 cout << "Trajet simple deja existant\n";
                             }
+
+                            delete trajet;
                         }
                             break;
                         case 2 : 
@@ -237,6 +239,8 @@ int main()
 
                                     trajet = new TrajetSimple(debut, fin, transport);
                                     liste->Ajouter(trajet);
+
+                                    delete trajet;
                                 }
 
                             } while(flag == 1);
@@ -255,6 +259,8 @@ int main()
                             } else {
                                 cout << "Ajout annule\n";
                             }
+                            delete liste;
+                            delete trajetCompose;
                         }
 
                             break;
