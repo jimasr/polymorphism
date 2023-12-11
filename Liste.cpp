@@ -28,17 +28,17 @@ void Liste::Ajouter(Trajet *trajet)
         cout << "Appel au ajouter de <Liste>" << endl;
     #endif
 
-    Noeud * noeud = new Noeud(nullptr, trajet);
+    Noeud * noeud = new Noeud(NULL, trajet);
     taille++; //increment taille
 
-    if (tete == nullptr)
+    if (tete == NULL)
     {
         tete = noeud; // Si la liste est vide, le nouvel élément devient le premier
         return;
     }
 
     Noeud *temp = tete;
-    while (temp->GetNoeudSuivant() != nullptr)
+    while (temp->GetNoeudSuivant() != NULL)
     {
         temp = temp->GetNoeudSuivant();
     }
@@ -55,7 +55,7 @@ void Liste::Afficher() const
     #endif
     int count = 0;
     Noeud *temp = tete;
-    while (temp != nullptr)
+    while (temp != NULL)
     {
         const Trajet *trajet = temp->GetTrajet();
 
@@ -79,7 +79,7 @@ Noeud *Liste::GetNoeud(int index) const
 {
     Noeud *temp = tete;
     int i = 0;
-    while (temp != nullptr)
+    while (temp != NULL)
     {
         if (i == index)
         {
@@ -88,7 +88,7 @@ Noeud *Liste::GetNoeud(int index) const
         temp = temp->GetNoeudSuivant();
         i++;
     }
-    return nullptr;
+    return NULL;
 }//----- Fin de Méthode GetNoeud
 
 // Ajoute un élément à la fin de la liste.
@@ -111,7 +111,7 @@ bool Liste::Equals(const Liste *liste) const
     Noeud *noeud = tete;
     Noeud *n = liste->GetTete();
 
-    while (noeud != nullptr)
+    while (noeud != NULL)
     {
         Trajet *trajet = noeud->GetTrajet();
         Trajet *trajet2 = n->GetTrajet();
@@ -132,7 +132,7 @@ bool Liste::Equals(const Liste *liste) const
 //-------------------------------------------- Constructeurs - destructeur
 Liste::Liste()
 {
-    tete = nullptr; // Initialise la liste avec un pointeur de tête nul.
+    tete = NULL; // Initialise la liste avec un pointeur de tête nul.
     taille = 0;
 
     #ifdef MAP
@@ -143,7 +143,7 @@ Liste::Liste()
 Liste::~Liste()
 {
     Noeud *courant = tete;
-    while (courant != nullptr)
+    while (courant != NULL)
     {
         Noeud *suivant = courant->GetNoeudSuivant();
         delete courant;

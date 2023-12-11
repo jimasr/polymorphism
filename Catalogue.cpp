@@ -50,7 +50,7 @@ int Catalogue::RechercherSimple(char *depart, char *arrive) const
 
     int count = 0;
 
-    while (noeud != nullptr)
+    while (noeud != NULL)
     {
         const Trajet *trajet = noeud->GetTrajet();
         
@@ -77,7 +77,7 @@ int Catalogue::VerifierDupliquer(Trajet * trajet) const
     #endif
     Noeud *noeud = liste->GetTete();
     
-    while(noeud != nullptr)
+    while(noeud != NULL)
     {
         const Trajet *t = noeud->GetTrajet();
         if(trajet->Equals(t))

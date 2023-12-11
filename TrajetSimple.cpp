@@ -41,7 +41,7 @@ bool TrajetSimple::Equals(const Trajet *trajet) const
         cout << "Appel au equals de <TrajetSimple>" << endl;
     #endif
     const TrajetSimple *trajetSimple = dynamic_cast<const TrajetSimple *>(trajet);
-    if(trajetSimple != nullptr)
+    if(trajetSimple != NULL)
     {
         return !strcmp(trajetSimple->GetDepart(), depart) && 
             !strcmp(trajetSimple->GetArrive(), arrive) && 

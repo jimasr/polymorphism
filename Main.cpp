@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstring>
 #include <cstdlib>
-#include <limits>
+#include <climits>
 
 using namespace std;
 
@@ -24,10 +24,11 @@ static void Clear();
 
 int main()
 {
-    Clear();
+    //Clear();
     Message();
+
     Pause();
-    Clear();
+    //Clear();
 
     char transport[100];
     char debut[100];
@@ -38,7 +39,7 @@ int main()
 
     do
     {
-        Clear();
+        //Clear();
         cout << "Menu :\n"
              << "\n"
              << "\t1: Rechercher un trajet simplement\n"
@@ -57,7 +58,7 @@ int main()
             cin.ignore(INT_MAX, '\n'); // Ignore invalid input
             choix = -1; // Set to an invalid value to continue the loop
         }
-        Clear();
+        //Clear();
 
         switch (choix)
         {
@@ -78,7 +79,7 @@ int main()
                     << " > ";
                 cin >> fin;
 
-                Clear();
+                //Clear();
 
                 cout << "Recherche simple :\n"
                     << endl;
@@ -88,7 +89,7 @@ int main()
                 {
                     cout << "Trajet non trouve\n";
                 }
-                Pause();
+                //Pause();
                 break;
 
             case 2:
@@ -103,13 +104,13 @@ int main()
                 << " > ";
                 cin >> fin;
 
-                Clear();
+                //Clear();
 
                 cout << "Recherche avancee :\n"
                     << endl;
                 cat->RechercherAvancee(debut, fin);
                 cout << "\n";
-                Pause();
+                //Pause();
                 break;
 
             case 3 : {
@@ -118,7 +119,7 @@ int main()
 
                 do
                 {
-                    Clear();
+                    //Clear();
                     cout << "Voulez-vous ajouter un trajet simple ou complexe ?\n"
                         << "\n"
                         << "\t1: Simple\n"
@@ -135,7 +136,7 @@ int main()
                         ajout = -1; // Set to an invalid value to continue the loop
                     }
 
-                    Clear();
+                    //Clear();
 
                     switch(ajout)
                     {
@@ -195,7 +196,7 @@ int main()
                                 << " > ";
                             cin >> transport;
 
-                            Clear();
+                            //Clear();
 
                             trajet = new TrajetSimple(debut, fin, transport);
                             liste->Ajouter(trajet);
@@ -217,7 +218,7 @@ int main()
                                 cout << " > ";
                                 cin >> flag;
 
-                                Clear();
+                                //Clear();
 
                                 if(flag == 2) {
                                     strcpy(finIndicator, fin);
@@ -261,8 +262,8 @@ int main()
                         default:
                             cout << "Choix incorrect\n";
                     }
-                    if(ajout != 0)
-                    Pause();
+                    //if(ajout != 0)
+                    //Pause();
 
                 } while (ajout != 0); 
                 
@@ -273,7 +274,7 @@ int main()
                 cout << "Affichage du catalogue :\n"
                     << endl;
                 cat->AfficherCatalogue();
-                Pause();
+                //Pause();
                 break;
 
             default:
@@ -282,7 +283,7 @@ int main()
 
     } while (choix != 0);
 
-    Clear();
+    //Clear();
 
     cout << "Au revoir\n"
          << endl;

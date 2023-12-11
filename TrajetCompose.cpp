@@ -31,12 +31,12 @@ void TrajetCompose::Afficher() const
 
     Noeud *noeud = liste->GetTete();
     cout << "(TC)";
-    while(noeud != nullptr)
+    while(noeud != NULL)
     {
         const TrajetSimple *trajet = dynamic_cast<const TrajetSimple *>(noeud->GetTrajet());
         cout << " de " << trajet->GetDepart() << " a " << trajet->GetArrive() << " en " << trajet->GetTransport();
 
-        if(noeud->GetNoeudSuivant() != nullptr) 
+        if(noeud->GetNoeudSuivant() != NULL) 
         cout << " - ";
 
         noeud = noeud->GetNoeudSuivant();
@@ -60,7 +60,7 @@ bool TrajetCompose::Equals(const Trajet *trajet) const
     #endif
     const TrajetCompose *trajetCompose = dynamic_cast<const TrajetCompose *>(trajet);
 
-    if(trajetCompose != nullptr)
+    if(trajetCompose != NULL)
     {
         if(!strcmp(trajetCompose->GetDepart(), depart) && !strcmp(trajetCompose->GetArrive(), arrive))
         {
@@ -68,7 +68,7 @@ bool TrajetCompose::Equals(const Trajet *trajet) const
             {
                 Noeud *noeud = liste->GetTete();
                 Noeud *other = trajetCompose->GetListe()->GetTete();
-                while(noeud != nullptr)
+                while(noeud != NULL)
                 {
                     if(!noeud->GetTrajet()->Equals(other->GetTrajet()))
                     {
