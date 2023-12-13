@@ -36,225 +36,223 @@ int main()
 
         cout << " > ";
 
-
         if (!(cin >> choix))
         {
-            cin.clear();// Clear the error state
+            cin.clear();               // Clear the error state
             cin.ignore(INT_MAX, '\n'); // Ignore invalid input
-            choix = -1; // Set to an invalid value to continue the loop
+            choix = -1;                // Set to an invalid value to continue the loop
         }
 
         switch (choix)
         {
             int parcours;
 
-            case 0:
-                break;
+        case 0:
+            break;
 
-            case 1:
-                cout << "Recherche simple :\n"
-                    << endl;
+        case 1:
+            cout << "Recherche simple :\n"
+                 << endl;
 
-                cout << "Ville de depart\n"
-                    << " > ";
-                cin >> debut;
+            cout << "Ville de depart\n"
+                 << " > ";
+            cin >> debut;
 
-                cout << "Ville de fin\n"
-                    << " > ";
-                cin >> fin;
+            cout << "Ville de fin\n"
+                 << " > ";
+            cin >> fin;
 
-                cout << "Recherche simple :\n"
-                    << endl;
+            cout << "Recherche simple :\n"
+                 << endl;
 
-                parcours = cat->RechercherSimple(debut, fin);
-                if (parcours == 0)
+            parcours = cat->RechercherSimple(debut, fin);
+            if (parcours == 0)
+            {
+                cout << "Trajet non trouve\n";
+            }
+            break;
+
+        case 2:
+            cout << "Recherche avancee :\n"
+                 << endl;
+
+            cout << "Ville de depart\n"
+                 << " > ";
+            cin >> debut;
+
+            cout << "Ville de fin\n"
+                 << " > ";
+            cin >> fin;
+
+            cout << "Recherche avancee :\n"
+                 << endl;
+            cat->RechercherAvancee(debut, fin);
+            cout << "\n";
+            break;
+
+        case 3:
+        {
+
+            int ajout = 0;
+
+            do
+            {
+                cout << "Voulez-vous ajouter un trajet simple ou complexe ?\n"
+                     << "\n"
+                     << "\t1: Simple\n"
+                     << "\t2: Complexe\n"
+                     << "\t0: Menu\n"
+                     << endl;
+
+                cout << " > ";
+
+                if (!(cin >> ajout))
                 {
-                    cout << "Trajet non trouve\n";
+                    cin.clear();               // Clear the error state
+                    cin.ignore(INT_MAX, '\n'); // Ignore invalid input
+                    ajout = -1;                // Set to an invalid value to continue the loop
+                }
+
+                switch (ajout)
+                {
+                case 0:
+                    break;
+                case 1:
+                {
+                    cout << "Ajout d'un trajet simple :\n"
+                         << "\n"
+                         << "Ville de depart\n"
+                         << " > ";
+                    cin >> debut;
+
+                    cout << "Ville de fin\n"
+                         << " > ";
+                    cin >> fin;
+
+                    cout << "Moyen de transport\n"
+                         << " > ";
+                    cin >> transport;
+
+                    TrajetSimple *trajet = new TrajetSimple(debut, fin, transport);
+
+                    if (!cat->VerifierDupliquer(trajet))
+                    {
+                        cat->Ajouter(trajet);
+                    }
+                    else
+                    {
+                        cout << "Trajet simple deja existant\n";
+                    }
                 }
                 break;
-
-            case 2:
-                cout << "Recherche avancee :\n"
-                    << endl;
-
-                cout << "Ville de depart\n"
-                << " > ";
-                cin >> debut;
-        
-                cout << "Ville de fin\n"
-                << " > ";
-                cin >> fin;
-
-
-                cout << "Recherche avancee :\n"
-                    << endl;
-                cat->RechercherAvancee(debut, fin);
-                cout << "\n";
-                break;
-
-            case 3 : {
-                
-                int ajout = 0;
-
-                do
+                case 2:
                 {
-                    cout << "Voulez-vous ajouter un trajet simple ou complexe ?\n"
-                        << "\n"
-                        << "\t1: Simple\n"
-                        << "\t2: Complexe\n"
-                        << "\t0: Menu\n"
-                        << endl;
-                        
-                    cout << " > ";
 
-                    if (!(cin >> ajout))
+                    int flag = 0;
+
+                    TrajetSimple *trajet;
+                    Liste *liste = new Liste();
+
+                    char debutIndicator[100];
+                    char finIndicator[100];
+
+                    cout << "Ajout d'un trajet complexe : \n"
+                         << "\n";
+
+                    cout << "Ville de depart\n"
+                         << " > ";
+                    cin >> debut;
+
+                    cout << "Ville prochaine\n"
+                         << " > ";
+                    cin >> fin;
+
+                    cout << "Moyen de transport\n"
+                         << " > ";
+                    cin >> transport;
+
+                    trajet = new TrajetSimple(debut, fin, transport);
+                    liste->Ajouter(trajet);
+
+                    strcpy(debutIndicator, debut);
+
+                    do
                     {
-                        cin.clear();// Clear the error state
-                        cin.ignore(INT_MAX, '\n'); // Ignore invalid input
-                        ajout = -1; // Set to an invalid value to continue the loop
-                    }
+                        cout << "Ajout d'un trajet complexe : \n"
+                             << "\n";
 
+                        cout << "Voulez-vous ajouter un autre trajet ?\n"
+                             << "\n"
+                             << "\t1: Oui\n"
+                             << "\t2: Non\n"
+                             << "\t3: Annuler\n"
+                             << endl;
 
-                    switch(ajout)
-                    {
-                        case 0:
-                            break;
-                        case 1:
+                        cout << " > ";
+                        cin >> flag;
+
+                        if (flag == 2)
                         {
-                            cout << "Ajout d'un trajet simple :\n"
-                                << "\n"
-                                << "Ville de depart\n"
-                                << " > ";
-                            cin >> debut;
-
-                            cout << "Ville de fin\n"
-                                << " > ";
-                            cin >> fin;
-
-                            cout << "Moyen de transport\n"
-                                << " > ";
-                            cin >> transport;
-
-                            TrajetSimple * trajet = new TrajetSimple(debut, fin, transport);
-
-                            if (!cat->VerifierDupliquer(trajet))
-                            {
-                                cat->Ajouter(trajet);
-                            }
-                            else
-                            {
-                                cout << "Trajet simple deja existant\n";
-                            }
-
+                            strcpy(finIndicator, fin);
                         }
-                            break;
-                        case 2 : 
+
+                        if (flag == 1)
                         {
-
-                            int flag = 0;
-
-                            TrajetSimple * trajet;
-                            Liste * liste = new Liste();
-
-                            char debutIndicator[100];
-                            char finIndicator[100];
-
-                            cout << "Ajout d'un trajet complexe : \n"
-                                << "\n";
-
-                            cout << "Ville de depart\n"
-                                << " > ";
-                            cin >> debut;
+                            strcpy(debut, fin);
 
                             cout << "Ville prochaine\n"
-                                << " > ";
+                                 << " > ";
                             cin >> fin;
 
                             cout << "Moyen de transport\n"
-                                << " > ";
+                                 << " > ";
                             cin >> transport;
-
 
                             trajet = new TrajetSimple(debut, fin, transport);
                             liste->Ajouter(trajet);
-
-                            strcpy(debutIndicator, debut);
-
-                            do
-                            {
-                                cout << "Ajout d'un trajet complexe : \n"
-                                    << "\n";
-
-                                cout << "Voulez-vous ajouter un autre trajet ?\n"
-                                    << "\n"
-                                    << "\t1: Oui\n"
-                                    << "\t2: Non\n"
-                                    << "\t3: Annuler\n"
-                                    << endl;
-
-                                cout << " > ";
-                                cin >> flag;
-
-                                if(flag == 2) {
-                                    strcpy(finIndicator, fin);
-                                }
-
-                                if(flag == 1) {
-                                    strcpy(debut,fin);
-
-                                    cout << "Ville prochaine\n"
-                                        << " > ";
-                                    cin >> fin;
-
-                                    cout << "Moyen de transport\n"
-                                        << " > ";
-                                    cin >> transport;
-
-                                    trajet = new TrajetSimple(debut, fin, transport);
-                                    liste->Ajouter(trajet);
-
-                                }
-
-                            } while(flag == 1);
-                            
-                            TrajetCompose * trajetCompose = new TrajetCompose(debutIndicator, finIndicator, liste);
-
-                            if(flag != 3) {
-                                if (!cat->VerifierDupliquer(trajetCompose)) 
-                                {
-                                    cat->Ajouter(trajetCompose);
-                                } 
-                                else 
-                                {
-                                    cout << "Trajet compose deja existant\n";
-                                    delete trajetCompose;
-                                }
-                            } else {
-                                cout << "Ajout annule\n";
-                            }
                         }
 
-                            break;
+                    } while (flag == 1);
 
-                        default:
-                            cout << "Choix incorrect\n";
+                    TrajetCompose *trajetCompose = new TrajetCompose(debutIndicator, finIndicator, liste);
+
+                    if (flag != 3)
+                    {
+                        if (!cat->VerifierDupliquer(trajetCompose))
+                        {
+                            cat->Ajouter(trajetCompose);
+                        }
+                        else
+                        {
+                            cout << "Trajet compose deja existant\n";
+                            // delete trajetCompose;
+                        }
                     }
-                } while (ajout != 0); 
-                
-            }
-                break;
-            case 4:
-                cout << "Affichage du catalogue :\n"
-                    << endl;
-                cat->AfficherCatalogue();
+                    else
+                    {
+                        cout << "Ajout annule\n";
+                    }
+                }
+
                 break;
 
-            default:
-                cout << "Choix incorrect\n";
+                default:
+                    cout << "Choix incorrect\n";
+                }
+            } while (ajout != 0);
+        }
+        break;
+        case 4:
+            cout << "Affichage du catalogue :\n"
+                 << endl;
+            cat->AfficherCatalogue();
+            break;
+
+        default:
+            cout << "Choix incorrect\n";
         }
 
     } while (choix != 0);
-
 
     cout << "Au revoir\n"
          << endl;
@@ -269,7 +267,5 @@ static void Message()
          << "\\______   \\____ |  | ___.__. _____   _________________ |  |__ |__| ______ _____  \n"
          << " |     ___/  _ \\|  |<   |  |/     \\_/ __ \\_  __ \\____ \\|  |  \\|  |/  ___//     \\ \n"
          << " |    |  (  <_> )  |_\\___  |  Y Y  \\  ___/|  | \\/  |_> >   Y  \\  |\\___ \\|  Y Y  \\\n"
-         << " |____|   \\____/|____/ ____|__|_|  /\\___  >__|  |   __/|___|  /__/____  >__|_|  /\n\n\n\n";         
+         << " |____|   \\____/|____/ ____|__|_|  /\\___  >__|  |   __/|___|  /__/____  >__|_|  /\n\n\n\n";
 }
-
-

@@ -25,27 +25,25 @@ using namespace std;
 void Catalogue::Ajouter(Trajet *trajet)
 {
     liste->Ajouter(trajet);
-    #ifdef MAP
-        cout << "Appel au ajouter de <Catalogue>" << endl;
-    #endif
-}//----- Fin de Méthode
-
+#ifdef MAP
+    cout << "Appel au ajouter de <Catalogue>" << endl;
+#endif
+} //----- Fin de Méthode
 
 void Catalogue::AfficherCatalogue() const
 {
     liste->Afficher();
-    #ifdef MAP
-        cout << "Appel au afficherCatalogue de <Catalogue>" << endl;
-    #endif
+#ifdef MAP
+    cout << "Appel au afficherCatalogue de <Catalogue>" << endl;
+#endif
 } //----- Fin de Méthode
 
-
-//send 0 if not found, 1 if found
-int Catalogue::RechercherSimple(char *depart, char *arrive) const 
+// send 0 if not found, 1 if found
+int Catalogue::RechercherSimple(char *depart, char *arrive) const
 {
-    #ifdef MAP
-        cout << "Appel au rechercherSimple de <Catalogue>" << endl;
-    #endif
+#ifdef MAP
+    cout << "Appel au rechercherSimple de <Catalogue>" << endl;
+#endif
     Noeud *noeud = liste->GetTete();
 
     int count = 0;
@@ -53,7 +51,7 @@ int Catalogue::RechercherSimple(char *depart, char *arrive) const
     while (noeud != NULL)
     {
         const Trajet *trajet = noeud->GetTrajet();
-        
+
         // Compare le départ et l'arrivée du trajet avec les paramètres
         if (!strcmp(trajet->GetArrive(), arrive) && !strcmp(trajet->GetDepart(), depart))
         {
@@ -70,17 +68,17 @@ int Catalogue::RechercherSimple(char *depart, char *arrive) const
 } //----- Fin de Méthode
 
 // retourne 1 si un duplique trajet est trouvé et 0 sinon
-int Catalogue::VerifierDupliquer(Trajet * trajet) const
- {
-    #ifdef MAP
-        cout << "Appel au verifierDupliquer de <Catalogue>" << endl;
-    #endif
+int Catalogue::VerifierDupliquer(Trajet *trajet) const
+{
+#ifdef MAP
+    cout << "Appel au verifierDupliquer de <Catalogue>" << endl;
+#endif
     Noeud *noeud = liste->GetTete();
-    
-    while(noeud != NULL)
+
+    while (noeud != NULL)
     {
         const Trajet *t = noeud->GetTrajet();
-        if(trajet->Equals(t))
+        if (trajet->Equals(t))
         {
             return 1; // si un duplique trajet est trouvé
         }
@@ -88,40 +86,42 @@ int Catalogue::VerifierDupliquer(Trajet * trajet) const
     }
     return 0; // si aucun duplique trajet n'est trouvé
 
-}//----- Fin de Méthode
+} //----- Fin de Méthode
 
-void Catalogue::RechercherAvancee(char* debut, char* fin) const
+void Catalogue::RechercherAvancee(char *debut, char *fin) const
 {
-    char *visited[100]; // Assumption: there will be no more than 100 cities
+    char **visited = new char *[100]; // Assumption: there will be no more than 100 cities
     int visitedCount = 0;
     Trajet *currentPath[100]; // Assumption: there will be no more than 100 trajets in a path
     int pathCount = 0;
     int count = 0;
 
     rechercherTransitif(debut, fin, visited, visitedCount, currentPath, pathCount, count);
+    for (int i = 0; i <= visitedCount + 1; i++)
+    {
+        delete[] visited[i];
+    }
 
-    
-}//----- Fin de Méthode
+    delete[] visited;
+} //----- Fin de Méthode
 
 //-------------------------------------------- Constructeurs - destructeur
 Catalogue::Catalogue() : liste(new Liste())
 {
-    #ifdef MAP
-        cout << "Appel au constructeur de <Catalogue>" << endl;
-    #endif
+#ifdef MAP
+    cout << "Appel au constructeur de <Catalogue>" << endl;
+#endif
 } //----- Fin de Catalogue
-
 
 Catalogue::~Catalogue()
 {
     delete liste;
-    #ifdef MAP
-        cout
-            << "Appel au destructeur de <Catalogue>" << endl;
-    #endif
+#ifdef MAP
+    cout
+        << "Appel au destructeur de <Catalogue>" << endl;
+#endif
     // Le destructeur de Catalogue libérera automatiquement la mémoire utilisée par la Liste
 } //----- Fin de ~Catalogue
-
 
 //------------------------------------------------------------------ PRIVE
 
@@ -148,7 +148,7 @@ bool Catalogue::rechercherTransitif(const char *depart, const char *arrive, char
     Noeud *noeud = liste->GetTete();
     while (noeud != NULL)
     {
-        Trajet* trajet = noeud->GetTrajet();
+        Trajet *trajet = noeud->GetTrajet();
         // Si le trajet commence par la ville de départ, on l'ajoute au chemin actuel.
         if (strcmp(trajet->GetDepart(), depart) == 0)
         {
@@ -186,10 +186,5 @@ bool Catalogue::rechercherTransitif(const char *depart, const char *arrive, char
     // Retire la ville de départ de la liste des villes visitées.
     visitedCount--;
 
-    for (int i = 0; i <= visitedCount; i++) {
-        delete[] visited[i];
-    }
-
-    delete[] visited;
     return false; // Retourne false pour continuer la recherche.
-}//----- Fin de Méthode
+} //----- Fin de Méthode
