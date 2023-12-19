@@ -5,6 +5,7 @@
 
 using namespace std;
 
+#include "GestionFichier.h"
 #include "TrajetCompose.h"
 #include "TrajetSimple.h"
 #include "Catalogue.h"
@@ -19,9 +20,13 @@ int main()
     char transport[100];
     char debut[100];
     char fin[100];
+
+    string file;
+
     int choix;
 
     Catalogue *cat = new Catalogue(); // Creation d'une instance de la classe Catalogue
+    GestionFichier gestionFichier;
 
     do
     {
@@ -31,6 +36,7 @@ int main()
              << "\t2: Rechercher un trajet de maniere avancee\n"
              << "\t3: Ajouter un trajet au catalogue\n"
              << "\t4: Afficher le catalogue\n"
+             << "\t5: Charger fichier\n"
              << "\t0: Quitter\n"
              << endl;
 
@@ -144,6 +150,7 @@ int main()
                             else
                             {
                                 cout << "Trajet simple deja existant\n";
+                                delete trajet;
                             }
 
                         }
@@ -247,6 +254,17 @@ int main()
                 cout << "Affichage du catalogue :\n"
                     << endl;
                 cat->AfficherCatalogue();
+                break;
+            
+            case 5:
+                cout << "Chargement du fichier :\n"
+                    << endl;
+
+                cout << "Nom fichier\n"
+                << " > ";
+                cin >> file;
+                gestionFichier.ChargerFichier(&cat, file);
+
                 break;
 
             default:

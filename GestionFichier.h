@@ -7,71 +7,79 @@
 *************************************************************************/
 
 //---------- Interface de la classe <Trajet> (fichier Trajet.h) ----------------
-#if !defined(TRAJET_H)
-#define TRAJET_H
+#if !defined(GESTIONFICHIER_H)
+#define GESTIONFICHIER_H
+
 
 //--------------------------------------------------- Interfaces utilisées
+#include <iostream>
+#include <fstream>
+#include <sstream>
+
+using namespace std;
+
+#include "Catalogue.h"
 
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Trajet>
-// Classe Abstraite dont hérite TrajetSimple et TrajetCompose
-//
+
 //------------------------------------------------------------------------
 
-class Trajet
+class GestionFichier
 {
 //----------------------------------------------------------------- PUBLIC
 public:
 //----------------------------------------------------- Méthodes publiques
-    virtual void Afficher() const = 0;
-    // Mode d'emploi :
-    // Add function definition for 'Afficher'
-    // Contrat :
-    //
 
-    char *GetDepart() const;
-    // Mode d'emploi :
-    // Get la chaine de caractère de la ville de départ
-    // Contrat :
-    //
-    
-
-    char *GetArrive() const;
-    // Mode d'emploi :
-    // Get la chaine de caractère de la ville d'arrive
-    // Contrat :
-    //
-    
-
-    virtual bool Equals(const Trajet *trajet) const;
+    GestionFichier() {};
     // Mode d'emploi :
     // 
     // Contrat :
     //
 
 //-------------------------------------------- Constructeurs - destructeur
-    virtual ~Trajet();
+    virtual ~GestionFichier() {};
     // Mode d'emploi :
     // Destructeur de Trajet
     // Contrat :
     //
 
-//------------------------------------------------------------------ PRIVE
-protected:
-//----------------------------------------------------- Attributs protégés
-    Trajet(const char *depart, const char *arrive);
-    // Mode d'emploi :
-    //
+	void SauvegarderFichier(const string &nomFichier);
+	// Mode d'emploi :
+    // Destructeur de Trajet
     // Contrat :
     //
 
+	void ChargerFichier(Catalogue **catalogue, const string &nomFichier);
+	// Mode d'emploi :
+    // Destructeur de Trajet
+    // Contrat :
+    //
+
+//------------------------------------------------------------------ PRIVE
+private:
+	bool OuvrirFichier(const string &nomFichier);
+    // Mode d'emploi :
+    // Destructeur de Trajet
+    // Contrat :
+    //
+
+	void FermerFichier();
+    // Mode d'emploi :
+    // Destructeur de Trajet
+    // Contrat :
+    //
+
+//----------------------------------------------------- Attributs protégés
+protected:
+	ifstream fic;
+
 //----------------------------------------------------- Méthodes protégées
-    char *depart;
-    char *arrive;
+
+//----------------------------------------------------- Attributs protégés
 };
 
 //----------------------------- Autres définitions dépendantes de <Trajet>
