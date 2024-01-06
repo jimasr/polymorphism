@@ -1,2 +1,2 @@
-S:A:B:m
-C:A:3:B:m:C:m:D:m
+S::Lyon:Marseille:TER302
+C::Paris:Lyon:TGV2005,Marseille:TER302,Nice:TER201

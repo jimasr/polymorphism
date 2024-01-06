@@ -1,12 +1,12 @@
 /*************************************************************************
                            Trajet  -  description
                              -------------------
-    début                : 21 novembre 2023
-    copyright            : (C) 2023 par H. ASRI, N. CATHERINE, J. HABBA, S. PERRET
-    e-mail               : hazim.asri@insa-lyon.fr, noam.catherine@insa-lyon.fr, jassir.habba@insa-lyon.fr, simon.perret@insa-lyon.fr
+    début                : 16 decembre 2023
+    copyright            : (C) 2023 par H. ASRI
+    e-mail               : hazim.asri@insa-lyon.fr
 *************************************************************************/
 
-//---------- Réalisation de la classe <Trajet> (fichier Trajet.cpp) ------------
+//---------- Réalisation de la classe <GestionFichier> (fichier GestionFichier.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -14,6 +14,9 @@
 
 //------------------------------------------------------ Include personnel
 #include "GestionFichier.h"
+#include "TrajetSimple.h"
+#include "TrajetCompose.h"
+#include "Liste.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -23,105 +26,90 @@
 
 void GestionFichier::ChargerFichier(Catalogue **catalogue, const string &nomFichier)
 {
-	// OuvrirFichier(nomFichier);
-
-	// string line;
-	// char car;
-
-	// while(getline(fic, line)) {
-
-	// 	istringstream issPrimary(line);
-	// 	char type;
-	// 	char delimiter = ':';
-
-	// 	string depart;
-	// 	string arrive;
-	// 	string transport;
-
-	// 	string token;
-	// 	string buffer;
-
-	// 	if(issPrimary >> type >> delimiter >> buffer) {
-	// 		if(type == 'S') {
-	// 			istringstream issSimple(buffer);
-				
-	// 			if(issSimple >> depart >> delimiter >> arrive >> delimiter >> transport) {
-	// 				TrajetSimple *trajetSimple = new TrajetSimple(depart.c_str(), arrive.c_str(), transport.c_str());
-	// 				catalogue->Ajouter(trajetSimple);
-	// 				delete trajetSimple;
-	// 			}
-				
-	// 		} 
-
-	// 		if(type == 'C') {
-	// 			istringstream issCompose(buffer);
-	// 			int count = 0;
-	// 			while(issCompose >> token >> delimiter) {
-					
-	// 			}
-				
-	// 		}
-	// 	}
-
-	// FermerFichier();
-
 	OuvrirFichier(nomFichier);
-
 	string line;
 
-	while(getline(fic, line)) {
+	while(getline(fic, line)) 
+	{
+		//get type
+		size_t pos = 0;
+		string typeDelimiter = "::";
+		string partDelimiter = ":";
+		string trajetDelimiter = ",";
 
-			std::istringstream iss(line);
-			char delimiter = ':';
-			string depart;
-			string arrive;
-			string transport;
-			
-			string buff;
+		pos = line.find(typeDelimiter);
+		char type = line.substr(0, pos).at(0);
+		line.erase(0, pos + typeDelimiter.length());
 
-		while(iss >> buff) {
+		switch (type) {
+			case 'S' : {
+				pos = line.find(partDelimiter);
+				string depart = line.substr(0, pos);
+				line.erase(0, pos + partDelimiter.length());
 
-			cout << buff;
+				pos = line.find(partDelimiter);
+				string arrive = line.substr(0, pos);
+				line.erase(0, pos + partDelimiter.length());
 
-			if(buff == "S") {
-				if(iss >> depart >> delimiter >> arrive >> delimiter >> transport >> delimiter) {
-					TrajetSimple * trajetSimple = new TrajetSimple(depart.c_str(), arrive.c_str(), transport.c_str());
-					trajetSimple->Afficher();
-					(*catalogue)->Ajouter(trajetSimple);
-				}
-			} else if(buff == "C") {
-				int numTrajets;
-				
-				if(iss >> depart >> delimiter >> numTrajets >> delimiter) {
-					Liste * liste = new Liste();
-					string arrivePrecedent = depart;
+				string transport = line;
 
-					for(int i = 0; i < numTrajets; i++) {
+				TrajetSimple * trajetSimple = new TrajetSimple(depart.c_str(), arrive.c_str(), transport.c_str());
 
-						if(iss >> arrive >> delimiter >> transport >> delimiter) {
-							TrajetSimple * trajetSimple = new TrajetSimple(arrivePrecedent.c_str(), arrive.c_str(), transport.c_str());
-							liste->Ajouter(trajetSimple);
-							arrivePrecedent = arrive;
-						}
-					}
-
-					TrajetCompose * trajetCompose = new TrajetCompose(depart.c_str(), arrivePrecedent.c_str(), liste);
-					trajetCompose->Afficher();
-					(*catalogue)->Ajouter(trajetCompose);
-				}
+				(*catalogue)->Ajouter(trajetSimple);
 			}
+
+			break;
+
+			case 'C' : {
+				pos = line.find(partDelimiter);
+				string depart = line.substr(0, pos);
+				line.erase(0, pos + partDelimiter.length());
+
+				Liste * liste = new Liste();
+				string avant = depart;
+
+				while ((pos = line.find(trajetDelimiter)) != string::npos) {
+					string currentLine = line.substr(0, pos);
+
+					size_t posPart = currentLine.find(partDelimiter);
+					string arrive = currentLine.substr(0, posPart);
+					currentLine.erase(0, posPart + partDelimiter.length());
+
+					string transport = currentLine;
+
+					TrajetSimple * trajetSimple = new TrajetSimple(avant.c_str(), arrive.c_str(), transport.c_str());
+
+					avant = arrive;
+					liste->Ajouter(trajetSimple);
+
+					line.erase(0, pos + partDelimiter.length());
+				}
+
+				//EOL treatment
+				size_t posPart = line.find(partDelimiter);
+				string arrive = line.substr(0, posPart);
+				line.erase(0, posPart + partDelimiter.length());
+				string transport = line;
+				
+				TrajetSimple * trajetSimple = new TrajetSimple(avant.c_str(), arrive.c_str(), transport.c_str());
+				liste->Ajouter(trajetSimple);
+	
+				TrajetCompose * trajetCompose = new TrajetCompose(depart.c_str(), arrive.c_str(), liste);
+
+				(*catalogue)->Ajouter(trajetCompose);
+			}
+
+			break;
+			
+			default:
+				break;
 		}
 	}
 
-	
-
-
-
-
-
-
 	FermerFichier();
 }
+
+//------------------------------------------------------------------ PRIVE
 
 bool GestionFichier::OuvrirFichier(const string &nomFichier) 
 {
@@ -138,7 +126,5 @@ void GestionFichier::FermerFichier()
 {
 	fic.close();
 }
-
-//------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
