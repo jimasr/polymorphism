@@ -37,6 +37,7 @@ int main()
              << "\t3: Ajouter un trajet au catalogue\n"
              << "\t4: Afficher le catalogue\n"
              << "\t5: Charger fichier\n"
+             << "\t6: Sauvegarder catalogue\n"
              << "\t0: Quitter\n"
              << endl;
 
@@ -266,6 +267,18 @@ int main()
                 gestionFichier.ChargerFichier(&cat, file);
 
                 break;
+
+            case 6:
+                cout << "Sauvegarde du catalogue :\n"
+                    << endl;
+
+                cout << "Nom fichier\n"
+                << " > ";
+                cin >> file;
+                gestionFichier.SauvegarderFichier(&cat, file);
+
+                break;
+
 
             default:
                 cout << "Choix incorrect\n";

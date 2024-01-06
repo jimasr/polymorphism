@@ -44,7 +44,7 @@ void TrajetCompose::Afficher() const
 } //----- Fin de Méthode Afficher
 
 
-Liste *TrajetCompose::GetListe() const
+const Liste *TrajetCompose::GetListe() const
 {
     #ifdef MAP
         cout << "Appel au getter liste de <TrajetCompose>" << endl;

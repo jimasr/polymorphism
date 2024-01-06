@@ -47,7 +47,7 @@ public:
     // Contrat :
     //
 
-	void SauvegarderFichier(const string &nomFichier);
+	void SauvegarderFichier(Catalogue **catalogue, const string &nomFichier);
 	// Mode d'emploi :
     // Destructeur de Trajet
     // Contrat :
@@ -75,7 +75,7 @@ private:
 
 //----------------------------------------------------- Attributs protégés
 protected:
-	ifstream fic;
+	fstream fic;
 
 //----------------------------------------------------- Méthodes protégées
 

@@ -30,7 +30,7 @@ class TrajetCompose : public Trajet
 //----------------------------------------------------------------- PUBLIC
 public:
 //----------------------------------------------------- Méthodes publiques
-    Liste *GetListe() const;
+    const Liste *GetListe() const;
     // Mode d'emploi :
     //
     // Contrat :

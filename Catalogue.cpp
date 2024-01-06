@@ -122,6 +122,10 @@ Catalogue::~Catalogue()
     // Le destructeur de Catalogue libérera automatiquement la mémoire utilisée par la Liste
 } //----- Fin de ~Catalogue
 
+Liste * Catalogue::GetListe() const
+{
+    return liste;
+}
 
 //------------------------------------------------------------------ PRIVE
 

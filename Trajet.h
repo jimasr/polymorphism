@@ -33,14 +33,14 @@ public:
     // Contrat :
     //
 
-    char *GetDepart() const;
+    const char *GetDepart() const;
     // Mode d'emploi :
     // Get la chaine de caractère de la ville de départ
     // Contrat :
     //
     
 
-    char *GetArrive() const;
+    const char *GetArrive() const;
     // Mode d'emploi :
     // Get la chaine de caractère de la ville d'arrive
     // Contrat :

@@ -25,12 +25,12 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 
 // Méthode pour récupéré le départ du trajet
-char* Trajet::GetDepart() const {
+const char* Trajet::GetDepart() const {
     return depart;
 } //----- Fin de Méthode GetDepart
 
 // Méthode pour récupéré l'arrive du trajet
-char* Trajet::GetArrive() const {
+const char* Trajet::GetArrive() const {
     return arrive;
 } //----- Fin de Méthode GetArrive
 

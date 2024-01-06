@@ -22,16 +22,12 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-const char* TrajetSimple::GetMoyenTransport() const
-{
-    return transport;
-} //----- Fin de Méthode GetMoyenTransport
 
 void TrajetSimple::Afficher() const {
     cout << "(TS) de " << depart << " a " << arrive << " en " << transport;
 } //----- Fin de Méthode Afficher
 
-char* TrajetSimple::GetTransport() const{
+const char* TrajetSimple::GetTransport() const{
     return transport;
 } //----- Fin de Méthode GetTransport
 

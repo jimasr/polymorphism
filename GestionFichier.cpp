@@ -33,13 +33,12 @@ void GestionFichier::ChargerFichier(Catalogue **catalogue, const string &nomFich
 	{
 		//get type
 		size_t pos = 0;
-		string typeDelimiter = "::";
 		string partDelimiter = ":";
 		string trajetDelimiter = ",";
 
-		pos = line.find(typeDelimiter);
+		pos = line.find(trajetDelimiter);
 		char type = line.substr(0, pos).at(0);
-		line.erase(0, pos + typeDelimiter.length());
+		line.erase(0, pos + trajetDelimiter.length());
 
 		switch (type) {
 			case 'S' : {
@@ -109,11 +108,63 @@ void GestionFichier::ChargerFichier(Catalogue **catalogue, const string &nomFich
 	FermerFichier();
 }
 
+void GestionFichier::SauvegarderFichier(Catalogue **catalogue, const string &nomFichier) 
+{
+	OuvrirFichier(nomFichier);
+
+	Liste *liste = (*catalogue)->GetListe();
+
+    Noeud *temp = liste->GetTete();
+	while (temp != NULL) {
+		Trajet *trajet = temp->GetTrajet();
+
+		if (TrajetSimple *trajetSimple = dynamic_cast<TrajetSimple *>(trajet)) {
+			const char *depart = trajetSimple->GetDepart();
+			const char *arrive = trajetSimple->GetArrive();
+			const char *transport = trajetSimple->GetTransport();
+
+			fic << "S," << depart << ":" << arrive << ":" << transport;
+			
+		} else {
+			TrajetCompose *trajetCompose = dynamic_cast<TrajetCompose *>(trajet);
+
+			const char *depart = trajetCompose->GetDepart();
+			const char *arrive = trajetCompose->GetArrive();
+			const Liste *liste = trajetCompose->GetListe();
+
+			fic << "C," 
+				<< depart 
+				<< ":";
+
+			Noeud *temp = liste->GetTete();
+			while(temp != NULL) {
+				TrajetSimple *trajetSimple = dynamic_cast<TrajetSimple *>(temp->GetTrajet());
+				const char *prochain = trajetSimple->GetArrive();
+				const char *transport = trajetSimple->GetTransport();
+
+				fic << prochain << ":" << transport;
+
+				if(strcmp(prochain, arrive) != 0) {
+					fic << ",";
+				}
+
+				temp = temp->GetNoeudSuivant();
+			}
+
+		}
+
+		fic << endl;
+		temp = temp->GetNoeudSuivant();
+
+	}
+	FermerFichier();
+}
+
 //------------------------------------------------------------------ PRIVE
 
 bool GestionFichier::OuvrirFichier(const string &nomFichier) 
 {
-	fic.open (nomFichier); // tentative d’ouverture du fichier test.txt
+	fic.open(nomFichier, ios::in | ios::out); // tentative d’ouverture du fichier test.txt
 	if ((fic.rdstate() & ifstream::failbit) != 0 )
 	{
 		cerr << "Erreur d'ouverture de " << nomFichier << endl;
