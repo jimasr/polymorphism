@@ -22,16 +22,12 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-const char* TrajetSimple::GetMoyenTransport() const
-{
-    return transport;
-} //----- Fin de Méthode GetMoyenTransport
 
 void TrajetSimple::Afficher() const {
     cout << "(TS) de " << depart << " a " << arrive << " en " << transport;
 } //----- Fin de Méthode Afficher
 
-char* TrajetSimple::GetTransport() const{
+const char* TrajetSimple::GetTransport() const{
     return transport;
 } //----- Fin de Méthode GetTransport
 
@@ -41,7 +37,7 @@ bool TrajetSimple::Equals(const Trajet *trajet) const
         cout << "Appel au equals de <TrajetSimple>" << endl;
     #endif
     const TrajetSimple *trajetSimple = dynamic_cast<const TrajetSimple *>(trajet);
-    if(trajetSimple != nullptr)
+    if(trajetSimple != NULL)
     {
         return !strcmp(trajetSimple->GetDepart(), depart) && 
             !strcmp(trajetSimple->GetArrive(), arrive) && 

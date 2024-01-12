@@ -1,73 +1,87 @@
 /*************************************************************************
-                           TrajetCompose  -  description
+                           Trajet  -  description
                              -------------------
     début                : 21 novembre 2023
     copyright            : (C) 2023 par H. ASRI, N. CATHERINE, J. HABBA, S. PERRET
     e-mail               : hazim.asri@insa-lyon.fr, noam.catherine@insa-lyon.fr, jassir.habba@insa-lyon.fr, simon.perret@insa-lyon.fr
 *************************************************************************/
 
-//---------- Interface de la classe <TrajetCompose> (fichier TrajetCompose.h) ----------------
-#if !defined(TRAJETCOMPOSE_H)
-#define TRAJETCOMPOSE_H
+//---------- Interface de la classe <Trajet> (fichier Trajet.h) ----------------
+#if !defined(GESTIONFICHIER_H)
+#define GESTIONFICHIER_H
+
 
 //--------------------------------------------------- Interfaces utilisées
-#include "Trajet.h"
-#include "TrajetSimple.h"
-#include "Liste.h"
+#include <iostream>
+#include <fstream>
+#include <sstream>
+
+using namespace std;
+
+#include "Catalogue.h"
+
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <TrajetCompose>
-// Représentation d'un trajet dit "compose" dans le catalogue des trajet
-//
+
 //------------------------------------------------------------------------
 
-
-class TrajetCompose : public Trajet
+class GestionFichier
 {
 //----------------------------------------------------------------- PUBLIC
 public:
 //----------------------------------------------------- Méthodes publiques
-    const Liste *GetListe() const;
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-	
-	virtual bool Equals(const Trajet *trajet) const;
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-	
-	virtual void Afficher() const;
+
+    GestionFichier() {};
     // Mode d'emploi :
     // 
     // Contrat :
     //
-	
+
 //-------------------------------------------- Constructeurs - destructeur
-	TrajetCompose(const char *depart, const char *arrive, Liste *liste);
+    virtual ~GestionFichier() {};
     // Mode d'emploi :
-    //
+    // Destructeur de Trajet
     // Contrat :
     //
-	virtual ~TrajetCompose();
-    // Mode d'emploi :
+
+	void SauvegarderFichier(Catalogue **catalogue, const string &nomFichier);
+	// Mode d'emploi :
+    // Destructeur de Trajet
+    // Contrat :
     //
+
+	void ChargerFichier(Catalogue **catalogue, const string &nomFichier);
+	// Mode d'emploi :
+    // Destructeur de Trajet
     // Contrat :
     //
 
 //------------------------------------------------------------------ PRIVE
+private:
+	bool OuvrirFichier(const string &nomFichier);
+    // Mode d'emploi :
+    // Destructeur de Trajet
+    // Contrat :
+    //
+
+	void FermerFichier();
+    // Mode d'emploi :
+    // Destructeur de Trajet
+    // Contrat :
+    //
+
+//----------------------------------------------------- Attributs protégés
 protected:
+	fstream fic;
+
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-	Liste *liste;
 };
 
-//-------------------------------- Autres définitions dépendantes de <Xxx>
+//----------------------------- Autres définitions dépendantes de <Trajet>
 
-#endif // TRAJETCOMPOSE_H
+#endif // TRAJET_H

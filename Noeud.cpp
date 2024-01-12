@@ -54,9 +54,9 @@ Noeud::Noeud(Noeud *suivant, Trajet *trajet) : noeud(suivant), trajet(trajet)
 
 Noeud::~Noeud()
 {
-#ifdef MAP
-    cout << "Appel au destructeur de <Noeud>" << endl;
-#endif
+    #ifdef MAP
+        cout << "Appel au destructeur de <Noeud>" << endl;
+    #endif
 } //----- Fin de ~Noeud
 
 

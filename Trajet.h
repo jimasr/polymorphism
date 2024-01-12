@@ -27,20 +27,20 @@ class Trajet
 //----------------------------------------------------------------- PUBLIC
 public:
 //----------------------------------------------------- Méthodes publiques
-    virtual void Afficher() const {};
+    virtual void Afficher() const = 0;
     // Mode d'emploi :
     // Add function definition for 'Afficher'
     // Contrat :
     //
 
-    char *GetDepart() const;
+    const char *GetDepart() const;
     // Mode d'emploi :
     // Get la chaine de caractère de la ville de départ
     // Contrat :
     //
     
 
-    char *GetArrive() const;
+    const char *GetArrive() const;
     // Mode d'emploi :
     // Get la chaine de caractère de la ville d'arrive
     // Contrat :

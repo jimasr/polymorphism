@@ -62,6 +62,8 @@ public:
     // Contrat :
     //
 
+    Liste * GetListe() const;
+
 //-------------------------------------------- Constructeurs - destructeur
     Catalogue();
     // Mode d'emploi :
@@ -81,10 +83,10 @@ public:
 
 protected:
 //----------------------------------------------------- Méthodes protégées
-bool rechercherTransitif(const char *depart, const char *arrive, char **visited, int &visitedCount, Trajet **currentPath, int &pathCount, int &count) const;
+    bool rechercherTransitif(const char *depart, const char *arrive, char **visited, int &visitedCount, Trajet **currentPath, int &pathCount, int &count) const;
 
 //----------------------------------------------------- Attributs protégés
-Liste *liste;
+    Liste *liste;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Catalogue>

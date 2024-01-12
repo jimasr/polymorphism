@@ -29,11 +29,6 @@ class TrajetSimple : public Trajet
 //----------------------------------------------------------------- PUBLIC
 public:
 //----------------------------------------------------- Méthodes publiques
-    char* GetTransport() const;
-    // Mode d'emploi :
-    // 
-    // Contrat :
-    //
 
     virtual bool Equals(const Trajet *trajet) const;
     // Mode d'emploi :
@@ -47,7 +42,7 @@ public:
     // Contrat :
     //
 
-    const char* GetMoyenTransport() const;
+    const char* GetTransport() const;
     // Mode d'emploi :
     // Récupère le moyen de transport pour un trajet simple
     // Contrat :

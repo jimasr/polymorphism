@@ -50,7 +50,7 @@ int Catalogue::RechercherSimple(char *depart, char *arrive) const
 
     int count = 0;
 
-    while (noeud != nullptr)
+    while (noeud != NULL)
     {
         const Trajet *trajet = noeud->GetTrajet();
         
@@ -77,7 +77,7 @@ int Catalogue::VerifierDupliquer(Trajet * trajet) const
     #endif
     Noeud *noeud = liste->GetTete();
     
-    while(noeud != nullptr)
+    while(noeud != NULL)
     {
         const Trajet *t = noeud->GetTrajet();
         if(trajet->Equals(t))
@@ -100,10 +100,7 @@ void Catalogue::RechercherAvancee(char* debut, char* fin) const
 
     rechercherTransitif(debut, fin, visited, visitedCount, currentPath, pathCount, count);
 
-    for (int i = 0; i < visitedCount; i++)
-    {
-        delete[] visited[i];
-    }
+    
 }//----- Fin de Méthode
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -125,6 +122,10 @@ Catalogue::~Catalogue()
     // Le destructeur de Catalogue libérera automatiquement la mémoire utilisée par la Liste
 } //----- Fin de ~Catalogue
 
+Liste * Catalogue::GetListe() const
+{
+    return liste;
+}
 
 //------------------------------------------------------------------ PRIVE
 
@@ -188,5 +189,11 @@ bool Catalogue::rechercherTransitif(const char *depart, const char *arrive, char
 
     // Retire la ville de départ de la liste des villes visitées.
     visitedCount--;
+
+    for (int i = 0; i <= visitedCount; i++) {
+        delete[] visited[i];
+    }
+
+    delete[] visited;
     return false; // Retourne false pour continuer la recherche.
 }//----- Fin de Méthode
